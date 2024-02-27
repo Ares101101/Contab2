@@ -4,25 +4,17 @@
   font-family: "Inter";
 }
 body{
-    background-color: #0F1114;
+    background-color: #212836;
 }
 
 #navTitle{
-    height: 35px;
+    height: 36px;
     padding: 0;
     margin: 0;
     align-items: center;
     display: flex;
 }
 :not(#navTitle){
-    -webkit-app-region: no-drag;
+    -webkit-app-region: no-drag;   
 }
-@font-face {
-    font-family:'mifuente';
-    src: url('/resources/SourceSansPro-Light.otf') format('opentype');
-    font-weight: bold;
-    font-style: bold;
-}
-#navTitle{
-    font-family: 'mifuente';
-}
+
