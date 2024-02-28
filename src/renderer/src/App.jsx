@@ -1,8 +1,5 @@
 import Header from './components/Header'
 import '../index.css'
-import Red from './assets/Control.png'
-import Green from './assets/Control (2).png'
-import Hellow from './assets/Control (1).png'
 import './App.css'
 import { useState } from 'react'
 import GCFC from './components/GCFC/GCFC'
@@ -18,12 +15,13 @@ function App() {
   }
 
   return (
-    <div className="w-full flex flex-col h-full ">
+    <div className="w-full h-screen flex flex-col  ">
       <nav
         style={{ '-webkit-app-region': 'drag' }}
         id="navTitle"
-        className="flex justify-between bg-[#161716] text-[#DCDCDD] "
+        className="flex justify-between bg-[#161716] text-[#DCDCDD]"
       >
+        <Header funct={onComp} />
         <p className=" ml-2 Pro-Light  select-none text-sm ">Contab 2</p>
         <div className=" flex   h-full">
           <a className=" hover:bg-slate-100  h-full grid w-8 items-center justify-center">
@@ -37,8 +35,8 @@ function App() {
           </a>
         </div>
       </nav>
-      <Header funct={onComp} />
-      <div className="">{compConc && <GCFC />}</div>
+      
+      <div className="h-full w-full ">{compConc && <GCFC />}</div>
 
       <section className="h-5 w-full grid bg-[#0277BC] absolute bottom-0 justify-center Pro-Light select-none text-sm text-[#C9C9C9]">
         creado por Diego Felix Amachi Flores
