@@ -19,11 +19,11 @@ function App() {
       <nav
         style={{ '-webkit-app-region': 'drag' }}
         id="navTitle"
-        className="flex justify-between bg-[#161716] text-[#DCDCDD]"
+        className="flex justify-center bg-[#161716] text-[#8B8A8A] relative"
       >
         <Header funct={onComp} />
-        <p className=" ml-2 Pro-Light  select-none text-sm ">Contab 2</p>
-        <div className=" flex   h-full">
+        <p className=" ml-2 Pro-Light  select-none text-sm  border border-[#424243]  rounded-md px-2 justify-center items-center grid">Contab 2</p>
+        <div className=" flex   h-full absolute right-0">
           <a className=" hover:bg-slate-100  h-full grid w-8 items-center justify-center">
             <Minimize className="w-[10px] fill-white " />
           </a>
@@ -35,8 +35,8 @@ function App() {
           </a>
         </div>
       </nav>
-      
-      <div className="h-full w-full ">{compConc && <GCFC />}</div>
+
+      <div className="h-full w-full grid  ">{compConc && <GCFC />}</div>
 
       <section className="h-5 w-full grid bg-[#0277BC] absolute bottom-0 justify-center Pro-Light select-none text-sm text-[#C9C9C9]">
         creado por Diego Felix Amachi Flores
