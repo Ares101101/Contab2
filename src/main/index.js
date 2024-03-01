@@ -1,7 +1,9 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, dialog } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+const axios = require('axios')
+const cheerio = require('cheerio')
 
 function createWindow() {
   // Create the browser window.
@@ -54,6 +56,59 @@ app.whenReady().then(() => {
   ipcMain.on('ping', () => console.log('pong'))
 
   createWindow()
+
+  ipcMain.on('show-dialog', (event, args) => {
+    dialog.showMessageBox(args)
+  })
+
+  ipcMain.on('create-window', () => {
+    const newWindow = new BrowserWindow({
+      width: 800,
+      height: 600,
+      webPreferences: {
+        nodeIntegration: false
+      }
+    })
+    newWindow.loadURL(
+      'https://www.sbs.gob.pe/app/pp/sistip_portal/paginas/publicacion/tipocambiopromedio.aspx'
+    )
+  })
+  ipcMain.on('obtener-informacion', async (event, url) => {
+    try {
+      // Si no se proporciona una URL, usa una URL predeterminada
+      if (!url) {
+        url =
+          'https://www.sbs.gob.pe/app/pp/sistip_portal/paginas/publicacion/tipocambiopromedio.aspx'
+      }
+
+      const response = await axios.get(url)
+      const html = response.data
+      const $ = cheerio.load(html)
+      const datosTipoCambio = []
+
+      $('#ctl00_cphContent_rgTipoCambio_ctl00__0').each((i, el) => {
+        // Encuentra todos los elementos td dentro del tr
+        $(el)
+          .find('td')
+          .each((index, td) => {
+            // Obtén el texto dentro de cada td y conviértelo a número
+            const texto = $(td).text().trim()
+            const numero = parseFloat(texto)
+            // Verifica si es un número válido y agrégalo al array
+            if (!isNaN(numero)) {
+              datosTipoCambio.push(numero)
+            }
+          })
+      })
+      console.log(datosTipoCambio)
+      // Envía los datos al proceso de renderizado
+      event.sender.send('informacion-obtenida', datosTipoCambio)
+    } catch (error) {
+      console.error('Error al obtener la información:', error)
+      // Envía un mensaje de error al proceso de renderizado si ocurre un error
+      event.sender.send('error-obteniendo-informacion', error.message)
+    }
+  })
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the

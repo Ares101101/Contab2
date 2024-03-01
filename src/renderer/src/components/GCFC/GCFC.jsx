@@ -1,7 +1,24 @@
+import { useState } from 'react'
 import CloseIcon from '../icons/close'
 
 function GCFC() {
-  
+  const [informacion, setInformacion] = useState([])
+
+  const handleClick = () => {
+    window.api.createWindow()
+  }
+  const handleClick2 = async () => {
+    try {
+      const datosTipoCambio = await window.api.cargarTc(
+        'https://www.sbs.gob.pe/app/pp/sistip_portal/paginas/publicacion/tipocambiopromedio.aspx'
+      )
+      setInformacion(datosTipoCambio)
+    } catch (error) {
+      console.error('Error al cargar el tipo de cambio:', error)
+      // Manejar el error si es necesario
+    }
+  }
+
   return (
     <div className=" h-full w-full flex flex-col">
       <section className=" w-full  h-6 bg-black flex  flex-col">
@@ -17,9 +34,11 @@ function GCFC() {
         </div>
       </section>
       <article className=" text-white h-full w-full bg-slate-500 ">
-        <div id="miDiv">
-          <button id='crear' >Abrir Ventana de Electron</button>
+        <div>
+          <button onClick={handleClick}>Mostrar Diálogo</button>
         </div>
+        <button onClick={handleClick2}> Mostrar tc </button>
+        {informacion && informacion.map((tc) => <div key={tc.index}>{tc}</div>)}
       </article>
     </div>
   )

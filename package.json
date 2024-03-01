@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "An Electron application with React",
   "main": "./out/main/index.js",
-  "author": "example.com",
+  "author": "Diego",
   "homepage": "https://electron-vite.org",
   "scripts": {
     "format": "prettier --write .",
@@ -20,6 +20,8 @@
   "dependencies": {
     "@electron-toolkit/preload": "3.0.0",
     "@electron-toolkit/utils": "3.0.0",
+    "axios": "^1.6.7",
+    "cheerio": "^1.0.0-rc.12",
     "electron-updater": "6.1.7"
   },
   "devDependencies": {
