@@ -5,7 +5,7 @@ import { electronAPI } from '@electron-toolkit/preload'
 const api = {
   showDialog: (options) => ipcRenderer.send('show-dialog', options),
   createWindow: () => ipcRenderer.send('create-window'),
-  cargarTc: (options) => ipcRenderer.send('obtener-informacion', options)
+  cargarTc: (options) => ipcRenderer.invoke('obtener-informacion', options)
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

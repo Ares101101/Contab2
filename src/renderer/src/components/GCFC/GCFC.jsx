@@ -38,7 +38,7 @@ function GCFC() {
           <button onClick={handleClick}>Mostrar Diálogo</button>
         </div>
         <button onClick={handleClick2}> Mostrar tc </button>
-        {informacion && informacion.map((tc) => <div key={tc.index}>{tc}</div>)}
+        {informacion && <div>{informacion[0]}</div>}
       </article>
     </div>
   )

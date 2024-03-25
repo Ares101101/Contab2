@@ -4,15 +4,17 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 const axios = require('axios')
 const cheerio = require('cheerio')
-
+const https = require('https')
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
+    minWidth: 800,
+    minHeight: 470,
     show: false,
     frame: false,
-    ...(process.platform === 'linux' ? { icon } : {}),
+    icon: icon,
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false
@@ -73,15 +75,22 @@ app.whenReady().then(() => {
       'https://www.sbs.gob.pe/app/pp/sistip_portal/paginas/publicacion/tipocambiopromedio.aspx'
     )
   })
-  ipcMain.on('obtener-informacion', async (event, url) => {
+  ipcMain.handle('obtener-informacion', async (event, url) => {
     try {
       // Si no se proporciona una URL, usa una URL predeterminada
       if (!url) {
         url =
           'https://www.sbs.gob.pe/app/pp/sistip_portal/paginas/publicacion/tipocambiopromedio.aspx'
       }
+      const httpsAgent = new https.Agent({
+        rejectUnauthorized: false
+      })
 
-      const response = await axios.get(url)
+      const axiosInstance = axios.create({
+        httpsAgent
+      })
+
+      const response = await axiosInstance.get(url)
       const html = response.data
       const $ = cheerio.load(html)
       const datosTipoCambio = []
@@ -100,13 +109,14 @@ app.whenReady().then(() => {
             }
           })
       })
-      console.log(datosTipoCambio)
+
       // Envía los datos al proceso de renderizado
-      event.sender.send('informacion-obtenida', datosTipoCambio)
+      console.log(datosTipoCambio)
+      return datosTipoCambio
     } catch (error) {
       console.error('Error al obtener la información:', error)
       // Envía un mensaje de error al proceso de renderizado si ocurre un error
-      event.sender.send('error-obteniendo-informacion', error.message)
+      event.sender.invoke('error-obteniendo-informacion', error.message)
     }
   })
 

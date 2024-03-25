@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import NavCompras from './navcompras/NavCompras'
-import icon from './icons/icon.png'
+import Logo from '../assets/logo'
 
 function Header({ funct }) {
   const [sect, setSect] = useState(false)
@@ -9,21 +9,18 @@ function Header({ funct }) {
     else return setSect(false)
   }
   return (
-    <nav className="flex h-9 justify-start items-center  text-[#8B8A8A] p-0 m-0 absolute left-0">
-      <a className=" select-none ">
-        <img src={icon} alt="" className=" w-7  mx-2 items-center " draggable={false} />
+    <nav className="flex h-9 justify-start items-center  text-[#222222] p-0 m-0 absolute left-0">
+      <a className=" select-none p-2">
+        <Logo className=" min-h-4 min-w-4" />
       </a>
 
-      <a
-        className="cursor-pointer px-2 hover:bg-[#1F1F1F] rounded-md hover:text-[#C9C9C9]"
-        onClick={onSect}
-      >
+      <a className="cursor-pointer px-2 hover:bg-[#EBEBEB] rounded-md h-6" onClick={onSect}>
         <p className="Pro-Light  select-none text-sm relative ">Compras</p>
       </a>
-      <a className="cursor-pointer px-2 hover:bg-[#1F1F1F] rounded-md hover:text-[#C9C9C9]">
+      <a className="cursor-pointer px-2 hover:bg-[#EBEBEB] rounded-md h-6">
         <p className="Pro-Light  select-none text-sm ">Ventas</p>
       </a>
-      <a className="cursor-pointer px-2 hover:bg-[#1F1F1F] rounded-md hover:text-[#C9C9C9]">
+      <a className="cursor-pointer px-2 hover:bg-[#EBEBEB] rounded-md h-6 ">
         <p className="Pro-Light  select-none text-sm ">Hoja de trabajo</p>
       </a>
 
