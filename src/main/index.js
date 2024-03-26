@@ -5,9 +5,10 @@ import icon from '../../resources/icon.png?asset'
 const axios = require('axios')
 const cheerio = require('cheerio')
 const https = require('https')
+let mainWindow
 function createWindow() {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+    mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
     minWidth: 800,
@@ -63,6 +64,30 @@ app.whenReady().then(() => {
     dialog.showMessageBox(args)
   })
 
+  ipcMain.on('minimize', () => {
+    if (mainWindow) {
+      mainWindow.minimize();
+    }
+  });
+  
+  // Manejar el evento 'maximize'
+  ipcMain.on('maximize', () => {
+    if (mainWindow) {
+      if (mainWindow.isMaximized()) {
+        mainWindow.unmaximize();
+      } else {
+        mainWindow.maximize();
+      }
+    }
+  });
+  
+  // Manejar el evento 'close'
+  ipcMain.on('close', () => {
+    if (mainWindow) {
+      mainWindow.close();
+    }
+  });
+
   ipcMain.on('create-window', () => {
     const newWindow = new BrowserWindow({
       width: 800,
@@ -75,6 +100,7 @@ app.whenReady().then(() => {
       'https://www.sbs.gob.pe/app/pp/sistip_portal/paginas/publicacion/tipocambiopromedio.aspx'
     )
   })
+
   ipcMain.handle('obtener-informacion', async (event, url) => {
     try {
       // Si no se proporciona una URL, usa una URL predeterminada

@@ -26,15 +26,15 @@ function App() {
         <p className=" Pro-Light  select-none text-sm  border border-[#E6E6E6] h-7 hover:bg-[#EBEBEB]   rounded-md px-2 min-w-64 w-full max-w-[30%] justify-center items-center flex gap-2">
           <Lupa fill="currentColor" className=" size-3" /> Contab 2
         </p>
-        <div className=" flex   h-full absolute right-0">
-          <a className=" hover:bg-slate-100  h-full grid w-8 items-center justify-center">
+        <div className=" flex   h-full absolute right-0 w-32 justify-between">
+          <a className=" hover:bg-slate-100  h-full grid w-full items-center justify-center">
             <Minimize className="w-2 " />
           </a>
-          <a className=" hover:bg-slate-100  h-full grid w-8 items-center justify-center">
+          <a className=" hover:bg-slate-100  h-full grid w-full items-center justify-center">
             <Maximi className=" w-2" />
           </a>
-          <a className=" hover:bg-slate-100  h-full grid w-8 items-center justify-center">
-            <CloseIcon className=" w-2 " />
+          <a className=" hover:bg-slate-100  h-full grid w-full items-center justify-center">
+            <CloseIcon className=" w-[9px] " />
           </a>
         </div>
       </nav>
