@@ -7,6 +7,7 @@ function GCFC() {
   const handleClick = () => {
     window.api.createWindow()
   }
+
   const handleClick2 = async () => {
     try {
       const datosTipoCambio = await window.api.cargarTc(

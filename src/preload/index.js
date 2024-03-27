@@ -8,7 +8,7 @@ const api = {
   cargarTc: (options) => ipcRenderer.invoke('obtener-informacion', options),
   minimize: (options) => ipcRenderer.send('minimize', options),
   close: (options) => ipcRenderer.send('close',options),
-  maximize: (options) => ipcRenderer.invoke('maximize,', options)
+  maximize: (options) => ipcRenderer.send('maximize', options)
 }
 
 // Use `contextBridge` APIs to expose Electron APIs to

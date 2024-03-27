@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import NavCompras from './navcompras/NavCompras'
 import Logo from '../assets/logo'
+import PropTypes from 'prop-types'
 
 function Header({ funct }) {
   const [sect, setSect] = useState(false)
@@ -28,5 +29,7 @@ function Header({ funct }) {
     </nav>
   )
 }
-
+Header.propTypes = {
+  funct: PropTypes.func.isRequired
+}
 export default Header
