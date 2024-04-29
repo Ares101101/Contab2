@@ -1,8 +1,8 @@
 import { navGraficos } from "../lib/maps";
 
-function NavGraficos({ funct, onSect, layoutOn }:{funct:()=>void; onSect: ()=>void; layoutOn: (i: number, e: number) => void }) {
+function NavGraficos({  onSect, layoutOn }:{ onSect: ()=>void; layoutOn: (i: number, e: number) => void }) {
     function OnFunct() {
-      funct()
+      
       onSect()
     }
     return (

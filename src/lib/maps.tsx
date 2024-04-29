@@ -1,36 +1,57 @@
-import Facturacion from "../pages/facturacion/facturacion"
+import Cargamasivadeinventario from "../pages/cargamasivadeinventario"
+import ConfiguracionDeImpuestos from "../pages/configuraciondeimpuestos"
+import Facturacion from "../pages/facturacion"
+import GestionDeClientes from "../pages/gestiondeclientes"
+import GestionDeInventario from "../pages/gestiondeinventario"
+import GraficoDeRendimiento from "../pages/graficoderendimiento"
+import GraficoVentasPorPeriodo from "../pages/graficoperiodo"
+import GraficoProductosVendidos from "../pages/graficoproductos"
+import GraficoRentabilidad from "../pages/graficorentabilidad"
+import GraficoTendencias from "../pages/graficotendencias"
+import HistorialDeComprobante from "../pages/historialdecomprobantes"
+import IntegracionDeCodigoDeBarras from "../pages/integraciondecodigodebarras"
+import GestionDeLotes from "../pages/lotesyseries"
+import IMetodosDePago from "../pages/metodosdepago"
+import NotaDeCredito from "../pages/notadecredito"
+import RegistroAnual from "../pages/registroanual"
+import RegistroClientes from "../pages/registroclientes"
+import RegistroComparativo from "../pages/registrocomparativo"
+import RegistroDiario from "../pages/registrodiario"
+import RegistroElectronico from "../pages/registroelectronico"
+import RegistroMensual from "../pages/registromensual"
+import ReportesDeInventario from "../pages/reportesdeinventario"
+
+//#region latouts
 
 export const layout1 = [
     <Facturacion />,
-    <div>0.1</div>,
-    <div>0.2</div>,
-    <div>0.3</div>,
-    <div>0.4</div>,
-    <div>0.5</div>,
+    <NotaDeCredito/>,
+    <HistorialDeComprobante/>,
+    <ConfiguracionDeImpuestos/>,
+    <IMetodosDePago/>,
+    <GestionDeClientes/>,
 ]
 export const layout2 = [
-    <div>1.0</div>,
-    <div>1.1</div>,
-    <div>1.2</div>,
-    <div>1.3</div>,
-    <div>1.4</div>,
+    <GestionDeInventario/>,
+    <ReportesDeInventario/>,
+    <GestionDeLotes/>,
+    <IntegracionDeCodigoDeBarras/>,
+    <Cargamasivadeinventario/>,
 ]
-
 export const layout3 = [
-    <div>2.0</div>,
-    <div>2.1</div>,
-    <div>2.2</div>,
-    <div>2.3</div>,
-    <div>2.4</div>,
-    <div>2.5</div>,
+    <RegistroDiario/>,
+    <RegistroMensual/>,
+    <RegistroAnual/>,
+    <RegistroComparativo/>,
+    <RegistroElectronico/>,
+    <RegistroClientes/>,
 ]
 export const layout4 = [
-    <div>3.0</div>,
-    <div>3.1</div>,
-    <div>3.2</div>,
-    <div>3.3</div>,
-    <div>3.4</div>,
-    <div>3.5</div>,
+    <GraficoVentasPorPeriodo/>,
+    <GraficoProductosVendidos/>,
+    <GraficoDeRendimiento/>,
+    <GraficoRentabilidad/>,
+    <GraficoTendencias/>,
 ]
 
 export const pestañas = [
@@ -39,6 +60,8 @@ export const pestañas = [
     "Registros",
     "Graficos",
 ]
+
+//#region navs
 
 export const navFacturacion =[
     "Emitir comprobante de venta",
@@ -58,7 +81,7 @@ export const navAlmacen =[
 ]
 
 export const navRegistros =[
-    "Registro diario",
+    "Registro de ventas diario",
     "Registro de ventas mensual",
     "Registro de ventas anual",
     "Comparativa de registros ",
@@ -67,9 +90,9 @@ export const navRegistros =[
 ]
 export const navGraficos =[
     "Ventas por período",
-    "Top productos vendidos",
+    "Informe de productos vendidos",
     "Comparación de rendimiento",
     "Análisis de rentabilidad",
     "Tendencias de precios",
-    "Seguimiento de objetivos y métricas"
+    "Proyeccion de ventas",
 ]

@@ -1,8 +1,8 @@
 import { navFacturacion } from "../lib/maps";
 
-function NavFacturacion({ funct, onSect, layoutOn }:{funct:()=>void; onSect: ()=>void; layoutOn: (i: number, e: number) => void }) {
+function NavFacturacion({  onSect, layoutOn }:{ onSect: ()=>void; layoutOn: (i: number, e: number) => void }) {
   function OnFunct() {
-    funct()
+   
     onSect()
   }
   return (

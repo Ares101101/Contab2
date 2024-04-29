@@ -1,8 +1,8 @@
 import { navRegistros } from "../lib/maps";
 
-function NavRegistros({ funct, onSect, layoutOn }:{funct:()=>void; onSect: ()=>void; layoutOn: (i: number, e: number) => void }) {
+function NavRegistros({  onSect, layoutOn }:{ onSect: ()=>void; layoutOn: (i: number, e: number) => void }) {
   function OnFunct() {
-    funct()
+    
     onSect()
   }
   return (

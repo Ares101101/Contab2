@@ -1,8 +1,10 @@
 // #region imports and props
 import { useEffect, useRef, useState } from 'react'
-import '../../styles/stylesf.css'
-import MenorIcon from '../../icons/menor'
-import generarFecha from './fecha'
+import '../styles/stylesf.css'
+import MenorIcon from '../icons/menor'
+import { generarFecha } from '../lib/functions';
+
+
 interface Producto {
     id: number;
     title: string;
@@ -21,15 +23,15 @@ function FacturaBoleta({state}:FacturaBoletaProps){
     const [on, setOn]= useState(false)
     const [date, setDate] = useState({minDate:'', maxDate:''})
     const [fecha, setFecha] = useState('')
+    const [alturas, setAlturas] = useState({ref:0,cont:0});
     const divRef = useRef<HTMLDivElement>(null);
     const divCont = useRef<HTMLDivElement>(null);
-    const [alturas, setAlturas] = useState({ref:0,cont:0});
   
     useEffect(() => {
         if (divCont.current && divRef.current) {
           const alturaCont = divCont.current.clientHeight;
           const alturaRef = divRef.current.clientHeight;
-            console.log(fecha)
+            
           if (alturaCont !== alturas.cont || alturaRef !== alturas.ref) {
             setAlturas({
                 ref: alturaRef,
@@ -43,7 +45,7 @@ function FacturaBoleta({state}:FacturaBoletaProps){
         const {minDate ,maxDate}= generarFecha()
         setDate({minDate:minDate, maxDate:maxDate})
     }, [])
-    console.log(alturas.cont == alturas.ref, alturas.cont , alturas.ref)
+
     return(
             <article className=" pl-4 comprobante overflow-y-auto  bg-[#F3F3F3] Pro-Light text-[#333333] flex flex-col Factura pb-4 arti ">
                 <section className='w-full h-24  flex justify-between relative bg-white'>

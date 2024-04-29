@@ -1,6 +1,6 @@
-import FacturaBoleta from './facturaboleta'
-import Productos from '../../components/productos'
-import '../../styles/facturacion.css'
+import FacturaBoleta from '../components/facturaboleta'
+import Productos from '../components/productos'
+import '../styles/facturacion.css'
 import { useState } from 'react';
 
 function Facturacion(){

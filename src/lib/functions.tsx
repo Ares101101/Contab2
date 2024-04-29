@@ -1,4 +1,4 @@
-const generarFecha = ()=>{
+export const generarFecha = ()=>{
     const fechaActual = new Date()
     const fecha = new Date()
     fechaActual.setDate(fechaActual.getDate() - 2)
@@ -7,4 +7,3 @@ const generarFecha = ()=>{
     return {minDate:formattedDate, maxDate:fechaa}
   
 }
-export default generarFecha

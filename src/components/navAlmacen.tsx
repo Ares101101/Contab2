@@ -1,8 +1,8 @@
 import { navAlmacen } from "../lib/maps";
 
-function NavAlmacen({ funct, onSect, layoutOn }:{funct:()=>void; onSect: ()=>void; layoutOn: (i: number, e: number) => void }) {
+function NavAlmacen({  onSect, layoutOn }:{ onSect: ()=>void; layoutOn: (i: number, e: number) => void }) {
   function OnFunct() {
-    funct()
+   
     onSect()
   }
   return (

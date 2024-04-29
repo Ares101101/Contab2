@@ -1,0 +1,99 @@
+[
+    {
+      "id": "001",
+      "cliente": "Empresa A",
+      "fecha": "2024-04-01",
+      "monto": 500.00,
+      "productos": [
+        { "nombre": "Producto 1", "cantidad": 2, "precio_unitario": 100.00 },
+        { "nombre": "Producto 2", "cantidad": 1, "precio_unitario": 150.00 }
+      ]
+    },
+    {
+      "id": "002",
+      "cliente": "Empresa B",
+      "fecha": "2024-04-03",
+      "monto": 800.00,
+      "productos": [
+        { "nombre": "Producto 3", "cantidad": 3, "precio_unitario": 200.00 },
+        { "nombre": "Producto 4", "cantidad": 1, "precio_unitario": 400.00 }
+      ]
+    },
+    {
+      "id": "003",
+      "cliente": "Empresa C",
+      "fecha": "2024-04-05",
+      "monto": 1200.00,
+      "productos": [
+        { "nombre": "Producto 5", "cantidad": 4, "precio_unitario": 250.00 },
+        { "nombre": "Producto 6", "cantidad": 2, "precio_unitario": 350.00 }
+      ]
+    },
+    {
+      "id": "004",
+      "cliente": "Empresa D",
+      "fecha": "2024-04-07",
+      "monto": 600.00,
+      "productos": [
+        { "nombre": "Producto 7", "cantidad": 1, "precio_unitario": 600.00 }
+      ]
+    },
+    {
+      "id": "005",
+      "cliente": "Empresa E",
+      "fecha": "2024-04-10",
+      "monto": 950.00,
+      "productos": [
+        { "nombre": "Producto 8", "cantidad": 3, "precio_unitario": 300.00 },
+        { "nombre": "Producto 9", "cantidad": 1, "precio_unitario": 350.00 }
+      ]
+    },
+    {
+      "id": "006",
+      "cliente": "Empresa F",
+      "fecha": "2024-04-12",
+      "monto": 700.00,
+      "productos": [
+        { "nombre": "Producto 10", "cantidad": 2, "precio_unitario": 200.00 },
+        { "nombre": "Producto 11", "cantidad": 1, "precio_unitario": 500.00 }
+      ]
+    },
+    {
+      "id": "007",
+      "cliente": "Empresa G",
+      "fecha": "2024-04-15",
+      "monto": 1500.00,
+      "productos": [
+        { "nombre": "Producto 12", "cantidad": 5, "precio_unitario": 250.00 }
+      ]
+    },
+    {
+      "id": "008",
+      "cliente": "Empresa H",
+      "fecha": "2024-04-18",
+      "monto": 400.00,
+      "productos": [
+        { "nombre": "Producto 13", "cantidad": 2, "precio_unitario": 150.00 }
+      ]
+    },
+    {
+      "id": "009",
+      "cliente": "Empresa I",
+      "fecha": "2024-04-20",
+      "monto": 850.00,
+      "productos": [
+        { "nombre": "Producto 14", "cantidad": 3, "precio_unitario": 200.00 },
+        { "nombre": "Producto 15", "cantidad": 1, "precio_unitario": 250.00 }
+      ]
+    },
+    {
+      "id": "010",
+      "cliente": "Empresa J",
+      "fecha": "2024-04-22",
+      "monto": 1100.00,
+      "productos": [
+        { "nombre": "Producto 16", "cantidad": 4, "precio_unitario": 275.00 }
+      ]
+    }
+  ]
+  
