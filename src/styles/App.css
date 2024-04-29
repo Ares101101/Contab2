@@ -1,0 +1,38 @@
+
+.App{
+  display: grid;
+  grid-template-rows: 36px calc(100vh - 36px);
+  height: 100vh;
+  margin: 0;
+  padding: 0; 
+}
+
+@font-face {
+  font-family: Monaco Regular ;
+  src: url('/public/fonts/MonacoRegular.ttf') format('ttf')
+}
+
+body{
+  font-family: 'Roboto', sans-serif;
+}
+.titlebar {
+  height: 30px;
+  background: #329ea3;
+  user-select: none;
+  display: flex;
+  justify-content: flex-end;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.titlebar-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+}
+.titlebar-button:hover {
+  background: #5bbec3;
+}

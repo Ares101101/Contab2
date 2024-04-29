@@ -1,0 +1,59 @@
+{
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build",
+    "devPath": "http://localhost:1420",
+    "distDir": "../dist"
+  },
+  "package": {
+    "productName": "contab2",
+    "version": "0.0.0"
+  },
+  "tauri": {
+    "allowlist": {
+      "all": false,
+      "shell": {
+        "all": false,
+        "open": true
+      },
+      "window": {
+        "all": true
+      }
+    },
+    "windows": [
+      {
+        "title": "contab2",
+        "width": 900,
+        "height": 600,
+        "minWidth": 800,
+        "minHeight": 600,
+        "decorations": false,
+        "fullscreen": false,
+        "visible": false,
+        "label": "main" 
+      },
+      {
+        "width": 420,
+        "height": 200,
+        "decorations": false,
+        "url": "splashscreen.html",
+        "label": "splashscreen"
+      }
+    ],
+    "security": {
+      "csp": null
+    },
+    "bundle": {
+      "active": true,
+      "targets": "all",
+      "identifier": "com.tauri.dev",
+      "icon": [
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/128x128@2x.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ]
+    }
+  }
+}

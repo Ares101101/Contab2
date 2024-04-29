@@ -1,0 +1,14 @@
+.custom-option {
+    border-radius: none;
+    font-weight: bold;
+    height: 20px;
+
+}
+
+.Factura{
+    height: calc(100vh - 36px);
+}
+
+.arti{
+    scrollbar-width: none;
+}

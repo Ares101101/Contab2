@@ -1,0 +1,16 @@
+.header{
+    height: 100%; /* Toma el 100% del alto del contenedor */
+    position: relative; /* Posición relativa para facilitar el posicionamiento de elementos internos */
+    display: flex; /* Utiliza el modelo de caja flexible para alinear elementos internos */
+    align-items: center; /* Alinea verticalmente los elementos al centro */
+    justify-content: center; /* Alinea horizontalmente los elementos al centro */
+}
+
+
+::placeholder {
+    color: #5f6b7a; /* Cambia el color del placeholder */
+    font-style: italic;
+}
+input:focus + .hidden {
+    display: flex;
+}

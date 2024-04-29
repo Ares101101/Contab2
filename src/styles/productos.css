@@ -1,0 +1,18 @@
+.inputs{
+    display: grid;
+    grid-template-rows: auto auto ;
+    height: 100%;
+}
+.forms {
+    display: grid;
+    grid-template-columns: 16px auto;
+    height: 3rem;
+}
+.productos{
+    display: grid;
+    grid-template-rows: 48px 48px calc(100vh - 48px - 48px - 52px);
+    height: 100%;
+}
+.card{
+    flex: 1 0 calc(20% );
+}
