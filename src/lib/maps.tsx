@@ -96,3 +96,4 @@ export const navGraficos =[
     "Tendencias de precios",
     "Proyeccion de ventas",
 ]
+
