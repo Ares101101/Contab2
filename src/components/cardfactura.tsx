@@ -44,7 +44,7 @@ function CardFactura() {
                   </span>
                   <span className="  flex text-xs"> 
                     <CheckIcon className="w-3 text-[#4caf50]"/>
-                   {`\u00A0 ${f.fecha}`}
+                    {`\u00A0 ${f.fecha}`}
                   </span>
                 </article>
               </article>
