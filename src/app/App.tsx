@@ -13,7 +13,7 @@ function App() {
     const newLayout = layouts.map((l) => ({
       ...l,
       on: l.index === i,
-      pages: l.pages.map((_, index) => index === e)
+      pages: l.account.map((_, index) => index === e)
     }));
     setLayout(newLayout);
   }

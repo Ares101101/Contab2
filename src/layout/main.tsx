@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 import { Layout} from '../types/types'
 import Account from './account'
 import '../styles/main.css'
@@ -13,16 +13,23 @@ function Main ({layouts, layoutOn}:{ layouts : Layout[]; layoutOn: (i: number, e
         layouts.map((l)=>{if(l.on){return setRenderedLayout(l)}})  
     },[layouts]
     )
-
+    function renderizar (){
+        const Layauts:ReactElement[] = [];
+        [layout1, layout2, layout3, layout4][renderedLayout.index].map((d, e) =>
+            renderedLayout.account.map((p, i) => {
+                if (p && e === i) {
+                    Layauts.push(d); // Guarda el valor de d en el array Layauts
+                }
+                return null;
+            })
+        );
+    return Layauts;
+    }
     return(
         <main className="main text-[#848484]">
         <Account renderedLayout = {renderedLayout} layoutOn={layoutOn} />
-        {
-            [layout1, layout2, layout3, layout4][renderedLayout.index].map((d, e) =>
-                renderedLayout.pages.map((p, i) =>
-                    (p && e === i) && <div key={i}>{d}</div>
-                )
-            )
+        {   
+            renderizar()
         }
         </main>
     )

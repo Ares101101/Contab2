@@ -12,7 +12,7 @@ function Account ({renderedLayout, layoutOn}:{ renderedLayout : Layout; layoutOn
                     <div>
                         {[icons1, icons2, icons3, icons4][renderedLayout.index].map((d, i) => (
                             <article
-                                className={"w-full grid justify-center items-center h-12 hover:text-white transition " + (renderedLayout.pages[i] ? "border-l-2 border-white text-white" : "border-l-2 border-transparent")}
+                                className={"w-full grid justify-center items-center h-12 hover:text-white transition " + (renderedLayout.account[i] ? "border-l-2 border-white text-white" : "border-l-2 border-transparent")}
                                 onClick={() => layoutOn(renderedLayout.index, i)}
                                 key={i}
                             >
