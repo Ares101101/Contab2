@@ -1,6 +1,6 @@
 import { navGraficos } from "../lib/maps";
 
-function NavGraficos({  onSect, layoutOn }:{ onSect: ()=>void; layoutOn: (i: number, e: number) => void }) {
+function NavGraficos({  onSect, accountOn }:{ onSect: ()=>void; accountOn: (i: number, e: number) => void }) {
     function OnFunct() {
       
       onSect()
@@ -13,7 +13,7 @@ function NavGraficos({  onSect, layoutOn }:{ onSect: ()=>void; layoutOn: (i: num
               className=" select-none text-xs  hover:bg-[#007acc50] hover:text-[#F6F6F6] w-full grid h-6 items-center pl-2  rounded-md justify-start"
               onClick={()=>{
                 OnFunct()
-                layoutOn(3,index)
+                accountOn(3,index)
               }}
               key={index}
               >

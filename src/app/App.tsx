@@ -1,27 +1,46 @@
 import "../styles/App.css";
-import { useState } from "react";
-import { Settings } from "../types/types";
+import { useEffect, useState } from "react";
+import { MainWindows, Settings } from "../types/types";
 import TitleBar from "../layout/titlebar";
 import Main from "../layout/main";
+import { layout1 } from "../lib/maps";
 
 function App() {
 
 
-  const [ layouts , setLayout]= useState(Settings.layauts)
+  const [ Accounts , setAccount]= useState(Settings.layauts)
+  const [ mainWindows, setMainWindows]= useState(Settings.MainWindows)
 
-  function layoutOn(i: number, e: number) {
-    const newLayout = layouts.map((l) => ({
+  function accountOn(i: number, e: number) {
+    const newLayout = Accounts.map((l) => ({
       ...l,
       on: l.index === i,
-      pages: l.account.map((_, index) => index === e)
+      account: l.account.map((_, index) => index === e)
     }));
-    setLayout(newLayout);
+    setAccount(newLayout);
   }
   
+  useEffect(()=>{
+  
+   if(true){
+    const defaultMain = {
+      title:"Emitir comprobante de venta",
+      puntero:{i:0,e:0},
+      componente:layout1[0],
+      layoutOn:accountOn,
+      isopen:true,
+      ismodified:false
+    }
+    setAccount([defaultMain])
+   }else{
+    setAccount([])
+   }
+    
+  },[])
   return (
     <div className="App text-[#222222] overflow-hidden " >
-      <TitleBar layoutOn={layoutOn} />
-      <Main layouts = {layouts} layoutOn={layoutOn} /> 
+      <TitleBar accountOn={accountOn} />
+      <Main accounts = {Accounts} layoutOn={accountOn} /> 
     </div>
   );
 }

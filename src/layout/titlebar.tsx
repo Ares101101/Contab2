@@ -15,7 +15,7 @@ import NavRegistros from '../components/navRegistros'
 
 
 function TitleBar(
-  {  layoutOn }: {  layoutOn: (i: number, e: number) => void }) 
+  {  accountOn: accountOn }: {  accountOn: (i: number, e: number) => void }) 
 {
     const ref = useRef<HTMLDivElement>(null);
     const [onTitle, setOnTitle]= useState(Settings.navs)
@@ -115,10 +115,10 @@ function TitleBar(
             <button className=" grid items-center justify-center hover:shadow-xl hover:bg-red-600 transition duration-100 ease-in-out hover:text-white" onClick={close}><CloseIcon className="  w-[20px]"/></button>
           </section>
         </section>
-        {onTitle[0] && <NavFacturacion onSect={cerrar} layoutOn={layoutOn}/>}
-        {onTitle[1] && <NavAlmacen onSect={cerrar} layoutOn={layoutOn}/>}
-        {onTitle[2] && <NavRegistros onSect={cerrar} layoutOn={layoutOn}/>}
-        {onTitle[3] && <NavGraficos onSect={cerrar} layoutOn={layoutOn}/>}
+        {onTitle[0] && <NavFacturacion onSect={cerrar} accountOn={accountOn}/>}
+        {onTitle[1] && <NavAlmacen onSect={cerrar} accountOn={accountOn}/>}
+        {onTitle[2] && <NavRegistros onSect={cerrar} accountOn={accountOn}/>}
+        {onTitle[3] && <NavGraficos onSect={cerrar} accountOn={accountOn}/>}
     </header>
   ) 
 }

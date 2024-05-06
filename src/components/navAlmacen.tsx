@@ -1,6 +1,6 @@
 import { navAlmacen } from "../lib/maps";
 
-function NavAlmacen({  onSect, layoutOn }:{ onSect: ()=>void; layoutOn: (i: number, e: number) => void }) {
+function NavAlmacen({  onSect, accountOn }:{ onSect: ()=>void; accountOn: (i: number, e: number) => void }) {
   function OnFunct() {
    
     onSect()
@@ -13,7 +13,7 @@ function NavAlmacen({  onSect, layoutOn }:{ onSect: ()=>void; layoutOn: (i: numb
           className=" select-none text-xs  hover:bg-[#007acc50] hover:text-[#F6F6F6] w-full grid h-6 items-center pl-2  rounded-md justify-start"
           onClick={()=>{
             OnFunct()
-            layoutOn(1,index)
+            accountOn(1,index)
           }}
           key={index}
         >

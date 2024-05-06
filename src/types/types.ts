@@ -1,10 +1,9 @@
+import { ReactElement } from "react"
+
 export interface Layout {
     on: boolean;
     index: number;
     account: boolean[];
-}
-export interface LayoutOnFunction {
-    (i: number, e: number): void;
 }
   
 export class Settings {
@@ -21,4 +20,32 @@ export class Settings {
         false,
         false
     ]
+    static MainWindows: MainWindows[]
+}
+
+
+export class MainWindows{
+    title: string
+    puntero: {i: number, e: number} 
+    componente: ReactElement
+    isopen: boolean
+    ismodified: boolean
+    layoutOn:(i: number, e: number)=>void
+
+    constructor(
+        title:string, 
+        puntero: {i: number, e: number}, 
+        componente: JSX.Element,
+        layoutOn:(i: number, e: number)=>void,
+        isopen: boolean,
+        ismodified: boolean,
+    )
+        {
+            this.title = title;
+            this.puntero = puntero;
+            this.componente = componente;
+            this.layoutOn = layoutOn
+            this.isopen = isopen
+            this.ismodified = ismodified
+        }
 }

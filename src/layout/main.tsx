@@ -5,13 +5,13 @@ import '../styles/main.css'
 import { layout1, layout2, layout3, layout4 } from '../lib/maps'
 
 
-function Main ({layouts, layoutOn}:{ layouts : Layout[]; layoutOn: (i: number, e: number) => void}) {
+function Main ({accounts, layoutOn}:{ accounts : Layout[]; layoutOn: (i: number, e: number) => void}) {
 
-    const [renderedLayout, setRenderedLayout] = useState(layouts[0])
+    const [renderedLayout, setRenderedLayout] = useState(accounts[0])
      
     useEffect(() =>{ 
-        layouts.map((l)=>{if(l.on){return setRenderedLayout(l)}})  
-    },[layouts]
+        accounts.map((l)=>{if(l.on){return setRenderedLayout(l)}})  
+    },[accounts]
     )
     function renderizar (){
         const Layauts:ReactElement[] = [];

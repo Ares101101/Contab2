@@ -1,5 +1,8 @@
-class Account {
+import { Component } from "react";
+
+class Account extends Component {
     Layauts : Layout[]
+    currentIndex: number | null;
     constructor(
         Layauts : Layout[]=[
         {on:true, index:0, account:[true, false, false, false, false, false, false]},
@@ -8,21 +11,44 @@ class Account {
         {on:false, index:3, account:[true, false, false, false, false, false, false]}
     ])
     {
-        this.Layauts =Layauts;
+        super([
+            {on:true, index:0, account:[true, false, false, false, false, false, false]},
+            {on:false, index:1, account:[true, false, false, false, false, false, false]},
+            {on:false, index:2, account:[true, false, false, false, false, false, false]},
+            {on:false, index:3, account:[true, false, false, false, false, false, false]}
+        ]);
+        this.Layauts =Layauts,
+        this.currentIndex = null, 
+        this.updateCurrentIndex()
     }
+    private updateCurrentIndex(): void {
+        const page = this.Layauts.map((l) => {
+            if (l.on) {
+                return l.index;
+            } else {
+                return null;
+            }
+        }).filter((value) => value !== null);
+
+        this.currentIndex = page.length > 0 ? page[0] : null;
+        console.log( this.currentIndex)
+    }
+
     accountOn(i: number, e: number){
         const newLayout = this.Layauts.map((l) => ({
             ...l,
             on: l.index === i,
-            pages: l.account.map((_, index) => index === e)
-          }));
-        console.log(newLayout);
+            account: l.account.map((_, index) => index === e)
+        }));
+       
         this.Layauts = newLayout;
         console.log(this.Layauts)
+        this.updateCurrentIndex()
     }
 
-    traerIndexAccount(){
-        
+    traerIndexAccount():number|null{
+        console.log(this.currentIndex)
+        return this.currentIndex
     }
 }
 
@@ -43,6 +69,9 @@ class Layout{
             this.account= account
         }
 }
+
+const account = new Account()
+export default account
 
 /*const account = new Account(new Nodo(new Layout(true,0,[true, false, false, false, false, false, false]), new Nodo(new Layout(false,1,[false, false, false, false, false, false, false]), new Nodo(new Layout(false,2,[false, false, false, false, false, false, false]), new Nodo(new Layout(false,3,[false, false, false, false, false, false, false]) ) ) ) ) )
 
