@@ -1,9 +1,29 @@
 import { navFacturacion } from "../lib/maps";
+import { MainWindows } from "../types/types";
 
-function NavFacturacion({  onSect,  accountOn }:{ onSect: ()=>void; accountOn: (i: number, e: number) => void }) {
+function NavFacturacion({  
+  onSect,  
+  accountOn, 
+  mainWindows, 
+  setMainWindows,
+  crearWindow,
+
+}:{ 
+  onSect: ()=>void; 
+  accountOn: (i: number, e: number) => void;
+  mainWindows:MainWindows[];
+  setMainWindows:(MainWindows:MainWindows[]) => void;
+  crearWindow:(i:number,e:number)=>MainWindows; 
+
+}) {
   function OnFunct() {
-   
     onSect()
+  }
+  function crearWin(i: number, e: number){
+    const newWindow = crearWindow(i, e);
+    const newMain = [...mainWindows, newWindow];
+    setMainWindows(newMain);
+    console.log(mainWindows)
   }
   return (
       <section className=" w-80 absolute top-8 left-2  border border-[#788284] bg-[#1f1f1f] rounded-md z-10">
@@ -17,6 +37,7 @@ function NavFacturacion({  onSect,  accountOn }:{ onSect: ()=>void; accountOn: (
           onClick={()=>{
             OnFunct()
             accountOn(0,index)
+            crearWin(0,index)
           }}
           key={index}
         >

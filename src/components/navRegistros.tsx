@@ -1,6 +1,21 @@
 import { navRegistros } from "../lib/maps";
+import { MainWindows } from "../types/types";
 
-function NavRegistros({  onSect, accountOn }:{ onSect: ()=>void; accountOn: (i: number, e: number) => void }) {
+function NavRegistros({  
+  onSect,  
+  accountOn, 
+  mainWindows, 
+  setMainWindows,
+  crearWindow,
+
+}:{ 
+  onSect: ()=>void; 
+  accountOn: (i: number, e: number) => void;
+  mainWindows:MainWindows[];
+  setMainWindows:(MainWindows:MainWindows[]) => void;
+  crearWindow:(i:number,e:number)=>MainWindows; 
+
+}) {
   function OnFunct() {
     
     onSect()

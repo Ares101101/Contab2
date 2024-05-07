@@ -7,15 +7,24 @@ import { appWindow } from '@tauri-apps/api/window'
 import { useEffect, useRef, useState } from 'react'
 import NavFacturacion from '../components/navFacturacion'
 import ExpanIcon from '../icons/logoexpan'
-import {  Settings } from '../types/types'
+import {  MainWindows, Settings } from '../types/types'
 import { pestañas } from '../lib/maps'
 import NavGraficos from '../components/navGraficos'
 import NavAlmacen from '../components/navAlmacen'
 import NavRegistros from '../components/navRegistros'
 
 
-function TitleBar(
-  {  accountOn: accountOn }: {  accountOn: (i: number, e: number) => void }) 
+function TitleBar({  
+  accountOn,
+  mainWindows, 
+  setMainWindows,
+  crearWindow,
+}: {  
+  accountOn: (i: number, e: number) => void;
+  mainWindows:MainWindows[];
+  setMainWindows:(MainWindows:MainWindows[]) => void;
+  crearWindow:(i:number,e:number)=>MainWindows;
+}) 
 {
     const ref = useRef<HTMLDivElement>(null);
     const [onTitle, setOnTitle]= useState(Settings.navs)
@@ -115,10 +124,38 @@ function TitleBar(
             <button className=" grid items-center justify-center hover:shadow-xl hover:bg-red-600 transition duration-100 ease-in-out hover:text-white" onClick={close}><CloseIcon className="  w-[20px]"/></button>
           </section>
         </section>
-        {onTitle[0] && <NavFacturacion onSect={cerrar} accountOn={accountOn}/>}
-        {onTitle[1] && <NavAlmacen onSect={cerrar} accountOn={accountOn}/>}
-        {onTitle[2] && <NavRegistros onSect={cerrar} accountOn={accountOn}/>}
-        {onTitle[3] && <NavGraficos onSect={cerrar} accountOn={accountOn}/>}
+        {onTitle[0] && 
+        <NavFacturacion 
+          onSect={cerrar} 
+          accountOn={accountOn} 
+          mainWindows={mainWindows} 
+          setMainWindows={setMainWindows}
+          crearWindow={crearWindow}
+        />}
+        {onTitle[1] && 
+        <NavAlmacen 
+          onSect={cerrar} 
+          accountOn={accountOn}
+          mainWindows={mainWindows} 
+          setMainWindows={setMainWindows}
+          crearWindow={crearWindow} 
+        />}
+        {onTitle[2] && 
+        <NavRegistros 
+          onSect={cerrar} 
+          accountOn={accountOn} 
+          mainWindows={mainWindows} 
+          setMainWindows={setMainWindows}
+          crearWindow={crearWindow}
+        />}
+        {onTitle[3] && 
+        <NavGraficos 
+          onSect={cerrar} 
+          accountOn={accountOn} 
+          mainWindows={mainWindows} 
+          setMainWindows={setMainWindows}
+          crearWindow={crearWindow}
+        />}
     </header>
   ) 
 }

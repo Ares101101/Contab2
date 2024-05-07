@@ -90,6 +90,7 @@ class Nodo {
 }
 
 class Layout{
+    id: string
     title: string
     puntero: {i: number, e: number} 
     componente: ReactElement
@@ -98,6 +99,7 @@ class Layout{
     layoutOn:(i: number, e: number)=>void
 
     constructor(
+        
         title:string, 
         puntero: {i: number, e: number}, 
         componente: ReactElement,
@@ -105,7 +107,7 @@ class Layout{
         isopen: boolean,
         ismodified: boolean,
     )
-        {
+        {   this.id = crypto.randomUUID()
             this.title = title;
             this.puntero = puntero;
             this.componente = componente;

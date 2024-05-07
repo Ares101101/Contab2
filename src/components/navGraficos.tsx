@@ -1,6 +1,21 @@
 import { navGraficos } from "../lib/maps";
+import { MainWindows } from "../types/types";
 
-function NavGraficos({  onSect, accountOn }:{ onSect: ()=>void; accountOn: (i: number, e: number) => void }) {
+function NavGraficos({  
+  onSect,  
+  accountOn, 
+  mainWindows, 
+  setMainWindows,
+  crearWindow,
+
+}:{ 
+  onSect: ()=>void; 
+  accountOn: (i: number, e: number) => void;
+  mainWindows:MainWindows[];
+  setMainWindows:(MainWindows:MainWindows[]) => void;
+  crearWindow:(i:number,e:number)=>MainWindows; 
+
+}) {
     function OnFunct() {
       
       onSect()

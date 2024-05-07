@@ -25,6 +25,7 @@ export class Settings {
 
 
 export class MainWindows{
+    id: string
     title: string
     puntero: {i: number, e: number} 
     componente: ReactElement
@@ -35,12 +36,13 @@ export class MainWindows{
     constructor(
         title:string, 
         puntero: {i: number, e: number}, 
-        componente: JSX.Element,
+        componente: ReactElement,
         layoutOn:(i: number, e: number)=>void,
         isopen: boolean,
         ismodified: boolean,
     )
-        {
+        {   
+            this.id = crypto.randomUUID()
             this.title = title;
             this.puntero = puntero;
             this.componente = componente;
