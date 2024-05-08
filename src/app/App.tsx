@@ -34,10 +34,30 @@ function App() {
       if(m.id === id){
         return {
           ...m,
-          ismodified: true
+          
         }
       }else{
         return m
+      }
+    })
+    console.log(newWindow)
+    setMainWindows(newWindow)
+   
+  }
+
+  function isOpenWindow(id : string, ){
+    const newWindow = mainWindows.map((m)=>{
+      if(m.id === id){
+        return {
+          ...m,
+          isopen: true,
+          ismodified: true
+        }
+      }else{
+        return {
+          ...m,
+          isopen:false
+        }
       }
     })
     setMainWindows(newWindow)
@@ -82,6 +102,7 @@ function App() {
         crearWindow={crearWindow}
         isModificWindow={isModificWindow}
         closewindow={closewindow} 
+        isOpenWindow={ isOpenWindow}
       /> 
     </div>
   );

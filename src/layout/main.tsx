@@ -12,7 +12,8 @@ function Main ({
     setMainWindows,
     crearWindow,
     isModificWindow,
-    closewindow
+    closewindow,
+    isOpenWindow,
 }:{ 
     accounts : Layout[]; 
     layoutOn: (i: number, e: number) => void;
@@ -21,6 +22,7 @@ function Main ({
     crearWindow:(i:number,e:number)=>MainWindows;
     isModificWindow:(id:string)=>void;
     closewindow:(id:string)=>void;
+    isOpenWindow:(id:string)=>void
 },
 ) {
 
@@ -44,6 +46,7 @@ function Main ({
         );
     return Layauts;
     }
+
     return(
         <main className="main text-[#848484]">
         <Account 
@@ -53,31 +56,27 @@ function Main ({
             mainWindows={mainWindows} 
             crearWindow={crearWindow}
         />
-        <div className=' flex flex-col  '>
+        <div className=' flex '>
             <div className=' w-full flex '>
 
                 {   
                     mainWindows && mainWindows.map((main,index)=>(
-                        <div>
-
+                        <div 
+                            className=''
+                            onClick={()=>{isOpenWindow(main.id)}}     
+                        >
                             <div 
+                                className={' relative w-28 border border-red-600 h-8 align-middle truncate overflow-hidden ' + (main.isopen ? ' bg-slate-950' : '')}
                                 key={index}
                                 onClick={()=>{
                                     main.layoutOn(main.puntero.i,main.puntero.e)
-                                    isModificWindow(main.id)
+                                    
                                 }}
-                                className={' relative w-28 border border-red-600 h-8 align-middle truncate overflow-hidden ' + (main.isopen ? ' bg-slate-950' : '')}
+                               
                             >
                                 {main.title}
                             </div>
-                            <button 
-                            className=' h-full w-8 bg-red-600 '
-                            onClick={()=>{
-                                closewindow(main.id);
-                            }}
-                            > 
-                                x
-                            </button>
+
                         </div>
                     ))
                 }
