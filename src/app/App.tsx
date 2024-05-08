@@ -28,6 +28,7 @@ function App() {
     const newWindow = new MainWindows(titleLayout,{i:i,e:e}, elementoLayout, accountOn, true, true)
     return newWindow
   }
+
   function isModificWindow(id : string, ){
     const newWindow = mainWindows.map((m)=>{
       if(m.id === id){
@@ -40,9 +41,19 @@ function App() {
       }
     })
     setMainWindows(newWindow)
-    console.log(mainWindows)
+   
   }
 
+  function closewindow(id: string) {
+    const newWindows = mainWindows.filter((m) => m.id !== id);
+    console.log(newWindows)
+    setMainWindows([
+      ...newWindows
+
+    ]);
+    console.log(mainWindows)
+    
+}
   useEffect(()=>{
   
    if(true){
@@ -69,7 +80,8 @@ function App() {
         layoutOn={accountOn}  
         setMainWindows={setMainWindows}
         crearWindow={crearWindow}
-        isModificWindow={isModificWindow} 
+        isModificWindow={isModificWindow}
+        closewindow={closewindow} 
       /> 
     </div>
   );

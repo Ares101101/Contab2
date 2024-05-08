@@ -11,14 +11,16 @@ function Main ({
     mainWindows, 
     setMainWindows,
     crearWindow,
-    isModificWindow
+    isModificWindow,
+    closewindow
 }:{ 
     accounts : Layout[]; 
     layoutOn: (i: number, e: number) => void;
     mainWindows:MainWindows[];
     setMainWindows:(MainWindows:MainWindows[]) => void;
     crearWindow:(i:number,e:number)=>MainWindows;
-    isModificWindow:(id:string)=>void
+    isModificWindow:(id:string)=>void;
+    closewindow:(id:string)=>void;
 },
 ) {
 
@@ -56,15 +58,26 @@ function Main ({
 
                 {   
                     mainWindows && mainWindows.map((main,index)=>(
-                        <div 
-                            key={index}
+                        <div>
+
+                            <div 
+                                key={index}
+                                onClick={()=>{
+                                    main.layoutOn(main.puntero.i,main.puntero.e)
+                                    isModificWindow(main.id)
+                                }}
+                                className={' relative w-28 border border-red-600 h-8 align-middle truncate overflow-hidden ' + (main.isopen ? ' bg-slate-950' : '')}
+                            >
+                                {main.title}
+                            </div>
+                            <button 
+                            className=' h-full w-8 bg-red-600 '
                             onClick={()=>{
-                                main.layoutOn(main.puntero.i,main.puntero.e)
-                                isModificWindow(main.id)
+                                closewindow(main.id);
                             }}
-                            className={' w-28 border border-red-600 h-8 align-middle truncate overflow-hidden ' + (main.isopen ? ' bg-slate-950' : '')}
-                        >
-                            {main.title}
+                            > 
+                                x
+                            </button>
                         </div>
                     ))
                 }

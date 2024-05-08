@@ -17,8 +17,23 @@ function NavRegistros({
 
 }) {
   function OnFunct() {
-    
     onSect()
+  }
+  function crearWin(i: number, e: number){
+    const newWindow = crearWindow(i, e);
+    const cerrarWindows = mainWindows.map((m)=>{
+      if(m.isopen){
+          return {
+              ...m,
+              isopen: false
+          }
+      }else{
+          return m
+      }
+    })
+    const newMain = [...cerrarWindows, newWindow];
+    setMainWindows(newMain);
+    console.log(mainWindows)
   }
   return (
       <section className=" w-80 absolute top-8 left-[149px]  border border-[#788284] bg-[#1f1f1f] rounded-md z-10">
@@ -29,6 +44,7 @@ function NavRegistros({
           onClick={()=>{
             OnFunct()
             accountOn(2,index)
+            crearWin(2,index)
           }}
           key={index}
         >

@@ -21,7 +21,17 @@ function NavFacturacion({
   }
   function crearWin(i: number, e: number){
     const newWindow = crearWindow(i, e);
-    const newMain = [...mainWindows, newWindow];
+    const cerrarWindows = mainWindows.map((m)=>{
+      if(m.isopen){
+          return {
+              ...m,
+              isopen: false
+          }
+      }else{
+          return m
+      }
+    })
+    const newMain = [...cerrarWindows, newWindow];
     setMainWindows(newMain);
     console.log(mainWindows)
   }

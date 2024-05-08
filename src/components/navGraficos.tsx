@@ -17,8 +17,23 @@ function NavGraficos({
 
 }) {
     function OnFunct() {
-      
       onSect()
+    }
+    function crearWin(i: number, e: number){
+      const newWindow = crearWindow(i, e);
+      const cerrarWindows = mainWindows.map((m)=>{
+        if(m.isopen){
+            return {
+                ...m,
+                isopen: false
+            }
+        }else{
+            return m
+        }
+      })
+      const newMain = [...cerrarWindows, newWindow];
+      setMainWindows(newMain);
+      console.log(mainWindows)
     }
     return (
         <section className=" w-80 absolute top-8 left-[216px] border border-[#788284] bg-[#1f1f1f] rounded-md z-10">
@@ -29,6 +44,7 @@ function NavGraficos({
               onClick={()=>{
                 OnFunct()
                 accountOn(3,index)
+                crearWin(3,index)
               }}
               key={index}
               >
