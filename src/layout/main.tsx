@@ -62,21 +62,25 @@ function Main ({
                 {   
                     mainWindows && mainWindows.map((main,index)=>(
                         <div 
-                            className=''
-                            onClick={()=>{isOpenWindow(main.id)}}     
+                            className=' flex h-8'     
                         >
                             <div 
                                 className={' relative w-28 border border-red-600 h-8 align-middle truncate overflow-hidden ' + (main.isopen ? ' bg-slate-950' : '')}
                                 key={index}
                                 onClick={()=>{
                                     main.layoutOn(main.puntero.i,main.puntero.e)
-                                    
+                                    isOpenWindow(main.id)
                                 }}
                                
                             >
                                 {main.title}
                             </div>
-
+                            <button
+                                className=' bg-red-600 w-8 '
+                                onClick={()=>{closewindow(main.id)}} 
+                            >
+                                x
+                            </button>
                         </div>
                     ))
                 }
