@@ -4,6 +4,7 @@ import { MainWindows, Settings } from "../types/types";
 import TitleBar from "../layout/titlebar";
 import Main from "../layout/main";
 import { layout1, layout2, layout3, layout4, navAlmacen, navFacturacion, navGraficos, navRegistros } from "../lib/maps";
+import { icons1, icons2, icons3, icons4 } from "../lib/icons";
 
 function App() {
 
@@ -23,27 +24,14 @@ function App() {
   function crearWindow(i:number, e:number){
     const layouts = [layout1, layout2, layout3, layout4]
     const titles = [navFacturacion, navAlmacen, navRegistros, navGraficos ]
+    const icons = [icons1, icons2, icons3, icons4]
     const elementoLayout = layouts[i][e]
     const titleLayout = titles[i][e]
-    const newWindow = new MainWindows(titleLayout,{i:i,e:e}, elementoLayout, accountOn, true, true)
+    const icon = icons[i][e]
+    const newWindow = new MainWindows(titleLayout,{i:i,e:e}, elementoLayout, accountOn, true, true,icon)
     return newWindow
   }
 
-  function isModificWindow(id : string, ){
-    const newWindow = mainWindows.map((m)=>{
-      if(m.id === id){
-        return {
-          ...m,
-          
-        }
-      }else{
-        return m
-      }
-    })
-    console.log(newWindow)
-    setMainWindows(newWindow)
-   
-  }
 
   function isOpenWindow(id : string, ){
     const newWindow = mainWindows.map((m)=>{
@@ -77,7 +65,7 @@ function App() {
   useEffect(()=>{
   
    if(true){
-    const defaultMain = new MainWindows("Emitir comprobante de venta",{i:0,e:0}, layout1[0], accountOn, true, false)
+    const defaultMain = new MainWindows("Emitir comprobante de venta",{i:0,e:0}, layout1[0], accountOn, true, false,icons1[0])
 
     setMainWindows([defaultMain])
    }else{
@@ -100,7 +88,6 @@ function App() {
         layoutOn={accountOn}  
         setMainWindows={setMainWindows}
         crearWindow={crearWindow}
-        isModificWindow={isModificWindow}
         closewindow={closewindow} 
         isOpenWindow={ isOpenWindow}
       /> 

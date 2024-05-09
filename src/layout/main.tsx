@@ -1,9 +1,9 @@
-import { ReactElement, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Layout, MainWindows} from '../types/types'
 import Account from './account'
 import '../styles/main.css'
-import { layout1, layout2, layout3, layout4 } from '../lib/maps'
-
+import CloseIcon from '../icons/logoclose';
+import SettingsMain from './settings';
 
 function Main ({
     accounts, 
@@ -11,7 +11,6 @@ function Main ({
     mainWindows, 
     setMainWindows,
     crearWindow,
-    isModificWindow,
     closewindow,
     isOpenWindow,
 }:{ 
@@ -19,8 +18,7 @@ function Main ({
     layoutOn: (i: number, e: number) => void;
     mainWindows:MainWindows[];
     setMainWindows:(MainWindows:MainWindows[]) => void;
-    crearWindow:(i:number,e:number)=>MainWindows;
-    isModificWindow:(id:string)=>void;
+    crearWindow:(i:number,e:number)=>MainWindows; 
     closewindow:(id:string)=>void;
     isOpenWindow:(id:string)=>void
 },
@@ -34,61 +32,71 @@ function Main ({
     )
 
 
-    function renderizar (){
-        const Layauts:ReactElement[] = [];
-        [layout1, layout2, layout3, layout4][renderedLayout.index].map((d, e) =>
-            renderedLayout.account.map((p, i) => {
-                if (p && e === i) {
-                    Layauts.push(d); // Guarda el valor de d en el array Layauts
-                }
-                return null;
-            })
-        );
-    return Layauts;
-    }
-
     return(
-        <main className="main text-[#848484]">
-        <Account 
-            renderedLayout = {renderedLayout}
-            layoutOn={layoutOn} 
-            setMainWindows={setMainWindows} 
-            mainWindows={mainWindows} 
-            crearWindow={crearWindow}
-        />
-        <div className=' flex '>
-            <div className=' w-full flex '>
+        <main className="main text-[#848484] ">
+            <Account 
+                renderedLayout = {renderedLayout}
+                layoutOn={layoutOn} 
+                setMainWindows={setMainWindows} 
+                mainWindows={mainWindows} 
+                crearWindow={crearWindow}
+            />
+            <div className=' flex overflow-hidden '>
+                <SettingsMain >
+                    <div>
 
-                {   
-                    mainWindows && mainWindows.map((main,index)=>(
-                        <div 
-                            className=' flex h-8'     
-                        >
-                            <div 
-                                className={' relative w-28 border border-red-600 h-8 align-middle truncate overflow-hidden ' + (main.isopen ? ' bg-slate-950' : '')}
-                                key={index}
-                                onClick={()=>{
-                                    main.layoutOn(main.puntero.i,main.puntero.e)
-                                    isOpenWindow(main.id)
-                                }}
-                               
-                            >
-                                {main.title}
-                            </div>
-                            <button
-                                className=' bg-red-600 w-8 '
-                                onClick={()=>{closewindow(main.id)}} 
-                            >
-                                x
-                            </button>
-                        </div>
-                    ))
-                }
+                    </div>
+                </SettingsMain>
+                <div className=' w-full '>
+                    <div className=' w-full flex h-9 bg-[#252526]'>
+                        {   
+                            mainWindows && mainWindows.map((main,index)=>(
+                                
+                                <div 
+                                    className={'cursor-pointer justify-between  px-1 relative w-40 items-center h-full  flex  text-xs border-y-[1px] border-r-[1px] border-[#252526]' + (index===0?" ":"") + (main.isopen ? ' bg-[#1e1e1e] text-white' : ' bg-[#2d2d2d]') }     
+                                >   <div 
+                                        className=' [&>svg]:w-[20px] [&>svg>path]:text-[#007acc] h-full items-center flex '
+                                        onClick={()=>{
+                                            main.layoutOn(main.puntero.i,main.puntero.e)
+                                            isOpenWindow(main.id)
+                                        }}
+                                    >
+                                        {
+                                            main.icon
+                                        }
+                                    </div>
+                                    <button 
+                                        className='truncate h-full pr-5 w-full overflow-hidden '  
+                                        key={index}
+                                        onClick={()=>{
+                                            main.layoutOn(main.puntero.i,main.puntero.e)
+                                            isOpenWindow(main.id)
+                                        }}
+                                    
+                                    >
+                                        {main.title}
+                                    </button>
+                                    <button
+                                        className=' min-w-5 h-5 rounded-sm absolute right-1 hover:bg-red-600 hover:text-white ml-1'
+                                        onClick={()=>{closewindow(main.id)}} 
+                                    >
+                                    <CloseIcon className="w-5"/>
+                                    </button>
+                                </div>
+                            ))
+                        }
+                    </div>
+                    <div className=' overflow-hidden w-full h-full'>
+                        {
+                            mainWindows && mainWindows.map((main,index)=>(
+                                <div className={' ' +(main.isopen?" ":"hidden")}>
+                                    {main.componente}
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
             </div>
-            <div >
-
-            </div>
-        </div>
         </main>
     )
 }

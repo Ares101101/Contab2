@@ -32,7 +32,7 @@ export class MainWindows{
     isopen: boolean
     ismodified: boolean
     layoutOn:(i: number, e: number)=>void
-
+    icon: ReactElement
     constructor(
         title:string, 
         puntero: {i: number, e: number}, 
@@ -40,6 +40,7 @@ export class MainWindows{
         layoutOn:(i: number, e: number)=>void,
         isopen: boolean,
         ismodified: boolean,
+        icon: ReactElement,
     )
         {   
             this.id = crypto.randomUUID()
@@ -49,5 +50,6 @@ export class MainWindows{
             this.layoutOn = layoutOn
             this.isopen = isopen
             this.ismodified = ismodified
+            this.icon = icon
         }
 }
