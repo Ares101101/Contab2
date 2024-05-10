@@ -2,7 +2,7 @@
 function HistorialDeComprobante() {
   
     return (
-        <section className=" ">
+        <section className=" bg-[#1E1E1E]">
             historial
         </section>
     )

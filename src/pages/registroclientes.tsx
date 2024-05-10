@@ -2,7 +2,7 @@
 function RegistroClientes() {
   
     return (
-        <section className=" ">
+        <section className=" bg-[#1E1E1E]">
             Registro Clientes
             
         </section>

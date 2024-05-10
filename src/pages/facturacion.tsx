@@ -33,7 +33,7 @@ function Facturacion(){
         console.log(items)
     }
     return(
-        <main className=" mainFacturacion">
+        <main className=" mainFacturacion bg-[#1E1E1E] ">
             <Productos sumarItems={sumarItems}/>
             <FacturaBoleta state={items}/>
         </main>

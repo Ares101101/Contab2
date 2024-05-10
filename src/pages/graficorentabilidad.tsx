@@ -2,7 +2,7 @@
 function GraficoRentabilidad() {
   
     return (
-        <section className=" ">
+        <section className=" bg-[#1E1E1E]">
           Análisis de rentabilidad
         </section>
     )

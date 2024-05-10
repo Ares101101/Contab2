@@ -2,7 +2,7 @@
 function GraficoVentasPorPeriodo() {
   
     return (
-        <section className=" ">
+        <section className=" bg-[#1E1E1E]">
            Ventas por período
             
         </section>

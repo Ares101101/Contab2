@@ -2,7 +2,7 @@
 function Cargamasivadeinventario() {
   
     return (
-        <section className=" ">
+        <section className=" bg-[#1E1E1E]">
            Carga masiva de inventario
             
         </section>
