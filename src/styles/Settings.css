@@ -1,22 +1,20 @@
 .settingsclass{
-    overflow-y: auto;
+    overflow: auto;
     scrollbar-gutter: stable both-edges;
+
 }
 
-.settingsclass::-webkit-scrollbar{
-    width: 8px;
-    margin: 8px;
+::-webkit-scrollbar{
+    width: 16px;
+
+}
+.settingsclass::-webkit-scrollbar-thumb{
+    background: transparent;
+    transition: background-color 2s ease-in-out;
+    
 }
 
-::-webkit-scrollbar-thumb{
-    width: 16px
-}
-::-webkit-scrollbar-button{
-    background: transparent;
-}
-.settingsclass:hover:-webkit-scrollbar-button{
-    background: transparent;
-}
 .settingsclass:hover::-webkit-scrollbar-thumb{
-    background: darkgrey;
+    transition: all 2s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.25) 
 }

@@ -4,6 +4,7 @@ import productos from '../assets/products.json'
 import FileZipIcon from '../icons/filezipicon';
 import CheckIcon from '../icons/checkicon';
 import '../styles/Settings.css'
+import 'overlayscrollbars/overlayscrollbars.css';
 
 interface Props {
     children: ReactNode; 
@@ -31,7 +32,7 @@ const SettingsMain: React.FC<Props>= ({children})=>{
                 <input type="text" placeholder="Buscar..." className=' text-sm w-full pl-4 rounded'/>
               </form> 
               */}
-          </article>
+            </article>
       </article>
       <div className=" flex flex-col settingsclass">
         {facturas.map((f,i)=>(
@@ -66,6 +67,7 @@ const SettingsMain: React.FC<Props>= ({children})=>{
             </section>
         ))}      
       </div>
+      
     </div>  
     )
 }
