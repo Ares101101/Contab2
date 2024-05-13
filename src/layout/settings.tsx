@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 import facturas from '../assets/facturas.json' 
 import productos from '../assets/products.json'
 import FileZipIcon from '../icons/filezipicon';
@@ -12,9 +12,53 @@ interface Props {
 }
 
 const SettingsMain: React.FC<Props>= ({children})=>{
+  const ref = useRef<HTMLDivElement>(null);
+  const refRight = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const resizeableEle = ref.current;
+    if (!resizeableEle) return;
+
+    const styles = window.getComputedStyle(resizeableEle);
+    let width = parseInt(styles.width, 10);
+    let x = 0;
+
+    // Right resize
+    const onMouseMoveRightResize = (event: MouseEvent) => {
+      const dx = event.clientX - x;
+      console.log(dx)
+      x = event.clientX;
+      width = width + dx;
+      resizeableEle.style.width = `${width}px`;
+      console.log(width)
+    };
+
+    const onMouseUpRightResize = () => {
+      document.removeEventListener("mousemove", onMouseMoveRightResize);
+    };
+
+    const onMouseDownRightResize = (event: MouseEvent) => {
+      x = event.clientX;
+      resizeableEle.style.left = styles.left;
+      resizeableEle.style.right = "";
+      document.addEventListener("mousemove", onMouseMoveRightResize);
+      document.addEventListener("mouseup", onMouseUpRightResize);
+    };
+
+    const resizerRight = refRight.current;
+
+    resizerRight?.addEventListener("mousedown", onMouseDownRightResize);
+
+    return () => {
+      resizerRight?.removeEventListener("mousedown", onMouseDownRightResize);
+    };
+  }, []);
+    
     return (
-    <div className={`relative bg-[#252526] w-[500px] h-full flex flex-col`}>
+    <div 
+      className={`relative bg-[#252526] w-[500px] h-full flex flex-col`}
+      ref={ref}
+    >
       <section className='text-xs px-4 pt-2 min-h-12 text-white items-center flex font-bold'>
           EMITIR NOTA DE CREDITO
       </section>
@@ -84,8 +128,8 @@ const SettingsMain: React.FC<Props>= ({children})=>{
         </div>
       </OverlayScrollbarsComponent> 
       <div 
-        className=' absolute h-full w-1 bg-transparent right-0 cursor-ew-resize hover:w-1 hover:bg-[#007acc] transition-colors duration-300'
-       
+        className=' absolute h-full w-1 bg-transparent right-0 cursor-ew-resize hover:w-1 hover:bg-[#007acc] transition-colors duration-300 active:cursor-ew-resize focus:cursor-ew-resize'
+        ref={refRight}
       >
       </div>       
     </div>  
