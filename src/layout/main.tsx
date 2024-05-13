@@ -4,6 +4,7 @@ import Account from './account'
 import '../styles/main.css'
 import CloseIcon from '../icons/logoclose';
 import SettingsMain from './settings';
+import { OverlayScrollbarsComponent } from 'overlayscrollbars-react';
 
 function Main ({
     accounts, 
@@ -41,54 +42,67 @@ function Main ({
                 mainWindows={mainWindows} 
                 crearWindow={crearWindow}
             />
-            <div className=' flex overflow-hidden '>
+            <div className=' flex overflow-hidden'>
                 <SettingsMain >
                     <div>
 
                     </div>
                 </SettingsMain>
-                <div className=' w-full '>
-                    <div className=' w-full flex h-9 bg-[#252526]'>
-                        {   
-                            mainWindows && mainWindows.map((main,index)=>(
-                                
-                                <div 
-                                    className={'cursor-pointer justify-between  px-1 relative w-40 items-center h-full  flex  text-xs border-y-[1px] border-r-[1px] border-[#252526]' + (index===0?" ":"") + (main.isopen ? ' bg-[#1e1e1e] text-white' : ' bg-[#2d2d2d]') }     
-                                >   <div 
-                                        className=' [&>svg]:w-[20px] [&>svg>path]:text-[#007acc] h-full items-center flex '
-                                        onClick={()=>{
-                                            main.layoutOn(main.puntero.i,main.puntero.e)
-                                            isOpenWindow(main.id)
-                                        }}
-                                    >
-                                        {
-                                            main.icon
-                                        }
-                                    </div>
-                                    <button 
-                                        className='truncate h-full pr-5 w-full overflow-hidden '  
-                                        key={index}
-                                        onClick={()=>{
-                                            main.layoutOn(main.puntero.i,main.puntero.e)
-                                            isOpenWindow(main.id)
-                                        }}
+                <div className=' w-full overflow-hidden'>
+                    <OverlayScrollbarsComponent
+                        element="div"
+                        options={{   
+                            scrollbars: { 
+                            theme:'os-theme-light-mini',
+                            autoHide: 'leave',
+                            autoHideDelay: 500,   
+                            },
+                            overflow:{x: 'scroll', y: 'scroll'} 
+                        }}
+                        defer
+                    >
+                        <div className=' w-full flex h-9 bg-[#252526] '>
+                            {   
+                                mainWindows && mainWindows.map((main,index)=>(
                                     
-                                    >
-                                        {main.title}
-                                    </button>
-                                    <button
-                                        className=' min-w-5 h-5 rounded-sm absolute right-1 hover:bg-red-600 hover:text-white ml-1'
-                                        onClick={()=>{closewindow(main.id)}} 
-                                    >
-                                    <CloseIcon className="w-5"/>
-                                    </button>
-                                </div>
-                            ))
-                        }
-                    </div>
+                                    <div 
+                                        className={'cursor-pointer justify-between  px-1 relative w-40 items-center h-full  flex  text-xs border-y-[1px] border-r-[1px] border-[#252526]' + (index===0?" ":"") + (main.isopen ? ' bg-[#1e1e1e] text-white' : ' bg-[#2d2d2d]') }     
+                                    >   <div 
+                                            className=' [&>svg]:w-[20px] [&>svg>path]:text-[#007acc] h-full items-center flex '
+                                            onClick={()=>{
+                                                main.layoutOn(main.puntero.i,main.puntero.e)
+                                                isOpenWindow(main.id)
+                                            }}
+                                        >
+                                            {
+                                                main.icon
+                                            }
+                                        </div>
+                                        <button 
+                                            className='truncate h-full pr-5 w-full overflow-hidden '  
+                                            key={index}
+                                            onClick={()=>{
+                                                main.layoutOn(main.puntero.i,main.puntero.e)
+                                                isOpenWindow(main.id)
+                                            }}
+                                        
+                                        >
+                                            {main.title}
+                                        </button>
+                                        <button
+                                            className=' min-w-5 h-5 rounded-sm absolute right-1 hover:bg-red-600 hover:text-white ml-1'
+                                            onClick={()=>{closewindow(main.id)}} 
+                                        >
+                                        <CloseIcon className="w-5"/>
+                                        </button>
+                                    </div>
+                                ))
+                            }
+                        </div>
+                    </OverlayScrollbarsComponent>
                     <div className=' overflow-hidden w-full h-full'>
                         {
-                            mainWindows && mainWindows.map((main,index)=>(
+                            mainWindows && mainWindows.map((main)=>(
                                 <div className={' ' +(main.isopen?" ":"hidden")}>
                                     {main.componente}
                                 </div>
