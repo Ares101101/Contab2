@@ -1,7 +1,33 @@
-.settingsclass{
+.settingsclass {
     overflow: auto;
     scrollbar-gutter: stable both-edges;
 
+}
+.sector {
+    width: 500px;
+}
+.active {
+    background: #007acc; /* El color que desees para el estado activo */
+}
+
+.mover{
+    position: absolute;
+    right: 0px;
+    height: 100%;
+    width: 4px;
+    transition-duration: 300ms;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    cursor: ew-resize;
+}
+
+.mover:hover{
+    background: #007acc;
+    transition-duration: 300ms;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
 }
 
 /*

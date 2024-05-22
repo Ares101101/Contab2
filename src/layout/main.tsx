@@ -42,13 +42,9 @@ function Main ({
                 mainWindows={mainWindows} 
                 crearWindow={crearWindow}
             />
-            <div className=' flex overflow-hidden'>
-                <SettingsMain >
-                    <div>
-
-                    </div>
-                </SettingsMain>
-                <div className=' w-full overflow-hidden'>
+            <div className='overflow-hidden section w-full '>
+                <SettingsMain />
+                <div className=' overflow-hidden w-full h-full'>
                     <OverlayScrollbarsComponent
                         element="div"
                         options={{   
@@ -60,6 +56,7 @@ function Main ({
                             overflow:{x: 'scroll', y: 'scroll'} 
                         }}
                         defer
+                        className=' w-full'
                     >
                         <div className=' w-full flex h-9 bg-[#252526] '>
                             {   
@@ -100,10 +97,10 @@ function Main ({
                             }
                         </div>
                     </OverlayScrollbarsComponent>
-                    <div className=' overflow-hidden w-full h-full'>
+                    <div className=' overflow-hidden w-full h-full  mains '>
                         {
                             mainWindows && mainWindows.map((main)=>(
-                                <div className={' ' +(main.isopen?" ":"hidden")}>
+                                <div className={'w-full  ' +(main.isopen?" ":"hidden")}>
                                     {main.componente}
                                 </div>
                             ))

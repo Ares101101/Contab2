@@ -2,7 +2,7 @@
 function ConfiguracionDeImpuestos() {
   
     return (
-        <section className=" bg-[#1E1E1E]">
+        <section className=" bg-[#1E1E1E] grid">
             configuracion de impuestos
         </section>
     )

@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { ReactNode, RefObject, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import facturas from '../assets/facturas.json' 
 import productos from '../assets/products.json'
 import FileZipIcon from '../icons/filezipicon';
@@ -6,58 +6,53 @@ import CheckIcon from '../icons/checkicon';
 import '../styles/Settings.css'
 import 'overlayscrollbars/overlayscrollbars.css';
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
+import { event } from '@tauri-apps/api';
 
-interface Props {
-    children: ReactNode; 
-}
 
-const SettingsMain: React.FC<Props>= ({children})=>{
+
+const SettingsMain: React.FC = () => {
+
   const ref = useRef<HTMLDivElement>(null);
   const refRight = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const resizeableEle = ref.current;
-    if (!resizeableEle) return;
 
-    const styles = window.getComputedStyle(resizeableEle);
-    let width = parseInt(styles.width, 10);
-    let x = 0;
+  useLayoutEffect(()=>{
+    const resizeableEle = ref.current
+    const resizerRight = refRight.current
+    if (!resizeableEle || !resizerRight) return;
+  
+    let x = 0
 
-    // Right resize
-    const onMouseMoveRightResize = (event: MouseEvent) => {
-      const dx = event.clientX - x;
-      console.log(dx)
-      x = event.clientX;
-      width = width + dx;
-      resizeableEle.style.width = `${width}px`;
-      console.log(width)
-    };
+    const onMouseMoveRight = ( event: MouseEvent ) => {
+      const dx = event.clientX - 48   
+      resizeableEle.style.width = `${dx}px`
+    } 
 
-    const onMouseUpRightResize = () => {
-      document.removeEventListener("mousemove", onMouseMoveRightResize);
-    };
+    const onMouseUpRight = () => {
+      document.removeEventListener("mousemove", onMouseMoveRight)
+      document.removeEventListener("mouseup", onMouseUpRight)
+      document.body.style.cursor = 'default'
+      resizerRight.classList.remove('active')
+    }
 
-    const onMouseDownRightResize = (event: MouseEvent) => {
-      x = event.clientX;
-      resizeableEle.style.left = styles.left;
-      resizeableEle.style.right = "";
-      document.addEventListener("mousemove", onMouseMoveRightResize);
-      document.addEventListener("mouseup", onMouseUpRightResize);
-    };
+    const onMoueseDownRight = ( event: MouseEvent ) => {
+      x = event.clientX
+      document.addEventListener("mousemove", onMouseMoveRight)
+      document.addEventListener("mouseup", onMouseUpRight)
+      document.body.style.cursor = 'ew-resize'
+      resizerRight.classList.add('active')
+    }
 
-    const resizerRight = refRight.current;
+    resizerRight?.addEventListener("mousedown", onMoueseDownRight)
 
-    resizerRight?.addEventListener("mousedown", onMouseDownRightResize);
-
-    return () => {
-      resizerRight?.removeEventListener("mousedown", onMouseDownRightResize);
-    };
-  }, []);
-    
-    return (
+    return ()=>{
+      resizerRight?.removeEventListener("mousedown", onMoueseDownRight)
+    }
+  },[])
+  return (
     <div 
-      className={`relative bg-[#252526] w-[500px] h-full flex flex-col`}
-      ref={ref}
+      className='relative bg-[#252526] h-full flex flex-col w-80 overflow-hidden'
+      ref={ref} 
     >
       <section className='text-xs px-4 pt-2 min-h-12 text-white items-center flex font-bold'>
           EMITIR NOTA DE CREDITO
@@ -93,42 +88,45 @@ const SettingsMain: React.FC<Props>= ({children})=>{
       }}
         defer
       >
-        <div className=" flex flex-col overflow-auto px-4">
+        <div className=" flex flex-col overflow-auto px-4 pb-2">
           {facturas.map((f,i)=>(
               <section 
-                className=" min-h-16 flex w-full items-center h- rounded hover:shadow  hover:bg-white/40 hover:text-white justify-between pr-2 group cursor-pointer"
+                className=" min-h-16 flex w-full items-center rounded hover:shadow  hover:bg-white/40 hover:text-white justify-between px-2 group cursor-pointer"
                 key={i}
               >
-                <article className=" flex justify-start ">
-
-                  <FileZipIcon className="w-12 "/>
-                  <article className=" flex flex-col">
-                    <span className="flex-1 whitespace-nowrap text-xs text-amber-200/75 font-extrabold">
+                <article className=" flex justify-start">
+                  <div className=' bg-[#4caf50] rounded text-white mr-2'>
+                    <FileZipIcon className="w-12 "/>
+                  </div>
+                  <section className=" flex flex-col items-start justify-evenly">
+                    <span className=" whitespace-nowrap text-xs text-amber-200/75 font-extrabold">
                     {f.numero}
                     </span>
                     <span className=" text-xs">
                       {f.RUC}
                     </span>
-                    <span className="  flex text-xs truncate"> 
-                      <CheckIcon className="w-3 text-[#4caf50]"/>
-                      {`${f.fecha}`}
-                    </span>
-                  </article>
+                  </section>
                 </article>
-                <span className="inline-flex items-center  py-0.5 ms-3 text-xs font-medium rounded bg-gray-700 max-w-[90px] px-2 w-full justify-between overflow-hidden">
-                    <span>
-                      {`s/`}
-                    </span>
-                    <span>
-                      4550400.00
-                    </span>                    
-                </span>
+                <article className='flex flex-col items-end justify-evenly min-h-12'>
+                  <span className="inline-flex items-center   text-xs font-medium rounded bg-gray-700 max-w-[90px] px-2 w-full justify-between overflow-hidden text-amber-200/75 ">
+                      <span>
+                        {`s/`}
+                      </span>
+                      <span >
+                        4550400.00
+                      </span>                    
+                  </span>
+                  <span className="  flex text-xs truncate"> 
+                    <CheckIcon className="w-3 text-[#4caf50]"/>
+                    {`${f.fecha}`}
+                  </span>
+                </article>
               </section>
           ))} 
         </div>
       </OverlayScrollbarsComponent> 
       <div 
-        className=' absolute h-full w-1 bg-transparent right-0 cursor-ew-resize hover:w-1 hover:bg-[#007acc] transition-colors duration-300 active:cursor-ew-resize focus:cursor-ew-resize'
+        className='mover'
         ref={refRight}
       >
       </div>       

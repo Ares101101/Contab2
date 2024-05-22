@@ -1,5 +1,11 @@
 .main{
     display: grid;
     grid-template-columns: 48px auto;
+    height: 100%
+}
+.section {
+    display:  grid;
+    grid-template-columns: auto 1fr;
     height: 100%;
+    overflow: hidden;
 }
