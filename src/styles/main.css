@@ -9,3 +9,9 @@
     height: 100%;
     overflow: hidden;
 }
+
+input[type = "date"]{
+    background: #333333;
+    color-scheme: dark;
+    color: #777777;
+}

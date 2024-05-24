@@ -22,10 +22,18 @@ const SettingsMain: React.FC = () => {
     if (!resizeableEle || !resizerRight) return;
   
     let x = 0
-
+    let animationFrameId: number;
+    
     const onMouseMoveRight = ( event: MouseEvent ) => {
       const dx = event.clientX - 48   
       resizeableEle.style.width = `${dx}px`
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+
+      animationFrameId = requestAnimationFrame(() => {
+        resizeableEle.style.width = `${dx}px`;
+      });
     } 
 
     const onMouseUpRight = () => {
