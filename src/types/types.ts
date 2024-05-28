@@ -19,6 +19,56 @@ export interface CardProductoProps {
   images: string[]
 
 }
+export interface NavActiveProps {
+  accountOn: (i: number, e: number) => void
+  mainWindows: MainWindows[]
+  setMainWindows: (MainWindows: MainWindows[]) => void
+  crearWindow: (i: number, e: number) => MainWindows
+  cerrar: () => void
+  onTitle: boolean[]
+}
+export interface NavFacturacionProps {
+  onSect: () => void
+  accountOn: (i: number, e: number) => void
+  crearWindow: (i: number, e: number) => MainWindows
+  setMainWindows: (MainWindows: MainWindows[]) => void
+  mainWindows: MainWindows[]
+}
+
+export interface TitleBarProps {
+  accountOn: (i: number, e: number) => void
+  mainWindows: MainWindows[]
+  setMainWindows: (MainWindows: MainWindows[]) => void
+  crearWindow: (i: number, e: number) => MainWindows
+}
+
+export interface AccountProps {
+  mainWindows: MainWindows[]
+  renderedLayout: Layout
+  layoutOn: (i: number, e: number) => void
+  setMainWindows: (setMainWindows: MainWindows[]) => void
+  crearWindow: (i: number, e: number) => MainWindows
+}
+
+export interface MainProps {
+  accounts: Layout[]
+  layoutOn: (i: number, e: number) => void
+  mainWindows: MainWindows[]
+  setMainWindows: (MainWindows: MainWindows[]) => void
+  crearWindow: (i: number, e: number) => MainWindows
+  closewindow: (id: string) => void
+  isOpenWindow: (id: string) => void
+}
+
+export interface ProductosProps {
+  sumarItems: (item: { id: number, title: string, price: number }) => void
+}
+
+export interface IconsProps {
+  className?: string
+  index?: number
+}
+
 export interface FacturaBoletaProps {
   state: Producto[]
 }

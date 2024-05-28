@@ -1,13 +1,10 @@
+const GestionDeLotes: React.FC = () => {
+  return (
+    <section className='bg-[#1E1E1E] grid'>
+      Gestion de Lotes y series
 
-function GestionDeLotes() {
-  
-    return (
-        <section className="bg-[#1E1E1E] grid">
-            Gestion de Lotes y series
-            
-        </section>
-    )
-  }
-  
-  export default GestionDeLotes
-  
+    </section>
+  )
+}
+
+export default GestionDeLotes

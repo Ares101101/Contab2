@@ -6,7 +6,7 @@ import { MainWindows, Settings } from '../types/types'
 import { icons1, icons2, icons3, icons4 } from '../lib/icons'
 import { layout1, layout2, layout3, layout4, navAlmacen, navFacturacion, navGraficos, navRegistros } from '../lib/maps'
 
-function App (): JSX.Element {
+function App (): React.ReactElement {
   const [Accounts, setAccount] = useState(Settings.layauts)
   const [mainWindows, setMainWindows] = useState(Settings.MainWindows)
 

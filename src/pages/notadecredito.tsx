@@ -1,12 +1,10 @@
-import CardFactura from "../components/cardfactura"
+import CardFactura from '../components/cardfactura'
 
-
-function NotaDeCredito() {
-  
+const NotaDeCredito: React.FC = () => {
   return (
-    <div className=" bg-[#1e1e1e] w-full h-full grid">
-      <CardFactura/>
-    </div>  
+    <div className=' bg-[#1e1e1e] w-full h-full grid'>
+      <CardFactura />
+    </div>
   )
 }
 

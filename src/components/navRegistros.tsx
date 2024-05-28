@@ -1,21 +1,8 @@
 import { navRegistros } from '../lib/maps'
-import { MainWindows } from '../types/types'
+import { NavFacturacionProps } from '../types/types'
 
-const NavRegistros = ({
-  onSect,
-  accountOn,
-  mainWindows,
-  setMainWindows,
-  crearWindow
-
-}: {
-  onSect: () => void
-  accountOn: (i: number, e: number) => void
-  mainWindows: MainWindows[]
-  setMainWindows: (MainWindows: MainWindows[]) => void
-  crearWindow: (i: number, e: number) => MainWindows
-
-}): JSX.Element => {
+const NavRegistros: React.FC<NavFacturacionProps> = (props) => {
+  const { onSect, accountOn, mainWindows, setMainWindows, crearWindow } = props
   const OnFunct = (): void => {
     onSect()
   }

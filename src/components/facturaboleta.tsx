@@ -2,10 +2,11 @@
 import '../styles/stylesf.css'
 import { useEffect, useRef, useState } from 'react'
 import { generarFecha } from '../lib/functions'
-import MenorIcon from '../icons/menor'
 import { FacturaBoletaProps } from '../types/types'
+import MenorIcon from '../icons/menor'
 
-const FacturaBoleta = ({ state }: FacturaBoletaProps): JSX.Element => {
+const FacturaBoleta: React.FC<FacturaBoletaProps> = (props) => {
+  const { state } = props
   // #region states
   const [comprobante, setComprobante] = useState('FACTURA DE VENTA')
   const [on, setOn] = useState(false)

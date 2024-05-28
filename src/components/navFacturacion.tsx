@@ -1,21 +1,9 @@
 import { navFacturacion } from '../lib/maps'
-import { MainWindows } from '../types/types'
+import { NavFacturacionProps } from '../types/types'
 
-const NavFacturacion = ({
-  onSect,
-  accountOn,
-  crearWindow,
-  setMainWindows,
-  mainWindows
+const NavFacturacion: React.FC<NavFacturacionProps> = (props) => {
+  const { onSect, accountOn, crearWindow, setMainWindows, mainWindows } = props
 
-}: {
-  onSect: () => void
-  accountOn: (i: number, e: number) => void
-  crearWindow: (i: number, e: number) => MainWindows
-  setMainWindows: (MainWindows: MainWindows[]) => void
-  mainWindows: MainWindows[]
-
-}): JSX.Element => {
   const OnFunct = (): void => {
     onSect()
   }

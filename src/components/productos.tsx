@@ -1,14 +1,12 @@
 import Lupa from '../icons/logoBusqueda'
 import CardProducto from './card'
-import productos from '../assets/products.json'
+import productos from '../db/products.json'
 import MenorIcon from '../icons/menor'
 import '../styles/productos.css'
+import { ProductosProps } from '../types/types'
 
-interface ProductosProps {
-  sumarItems: (item: { id: number, title: string, price: number }) => void
-}
-
-const Productos = ({ sumarItems }: ProductosProps): JSX.Element => {
+const Productos: React.FC<ProductosProps> = (props) => {
+  const { sumarItems } = props
   return (
     <section className=' bg-[#F3F3F3] text-[#333333] Pro-Light m-0 p-0 productos '>
       <section className='Pro-Light text-xs px-4 pt-2'>

@@ -1,6 +1,8 @@
 import { NavAyudaProps } from '../types/types'
 
-const NavAyuda = ({ funct, onSect, layoutOn }: NavAyudaProps): JSX.Element => {
+const NavAyuda: React.FC<NavAyudaProps> = (props) => {
+  const { funct, onSect, layoutOn } = props
+
   const OnFunct = (): void => {
     funct()
     onSect()

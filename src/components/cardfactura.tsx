@@ -1,9 +1,9 @@
 import '../styles/cards.css'
 import FileZipIcon from '../icons/filezipicon'
-import facturas from '../assets/facturas.json'
+import facturas from '../db/facturas.json'
 import CheckIcon from '../icons/checkicon'
 
-const CardFactura = (): JSX.Element => {
+const CardFactura: React.FC = () => {
   return (
     <div className=' bg-[#252526] w-1/6 h-full overflow-hidden flex flex-col'>
       <section className='text-xs px-4 pt-2 h-12 text-white items-center flex font-bold'>

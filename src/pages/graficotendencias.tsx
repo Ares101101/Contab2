@@ -1,12 +1,9 @@
+const GraficoTendencias: React.FC = () => {
+  return (
+    <section className=' bg-[#1E1E1E] grid'>
+      Tendencias de precios
+    </section>
+  )
+}
 
-function GraficoTendencias() {
-  
-    return (
-        <section className=" bg-[#1E1E1E] grid">
-          Tendencias de precios
-        </section>
-    )
-  }
-  
-  export default GraficoTendencias
-  
+export default GraficoTendencias

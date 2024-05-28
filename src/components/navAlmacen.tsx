@@ -1,7 +1,8 @@
 import { navAlmacen } from '../lib/maps'
 import { NavAlmacenProps } from '../types/types'
 
-const NavAlmacen = ({ onSect, accountOn, mainWindows, setMainWindows, crearWindow }: NavAlmacenProps): JSX.Element => {
+const NavAlmacen: React.FC<NavAlmacenProps> = (props: NavAlmacenProps) => {
+  const { onSect, accountOn, setMainWindows, crearWindow, mainWindows } = props
   function OnFunct (): void {
     onSect()
   }

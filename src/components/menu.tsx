@@ -1,7 +1,6 @@
-
 import Lupa from '../icons/logoBusqueda'
 
-const Menu = (): JSX.Element => {
+const Menu: React.FC = () => {
   return (
     <article className=' flex relative  w-full justify-between bg-[#1f1f1f]  '>
 

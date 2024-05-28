@@ -1,6 +1,7 @@
 import { CardProductoProps } from '../types/types'
 
-const CardProducto = ({ title, price, rating, stock, brand, category }: CardProductoProps): JSX.Element => {
+const CardProducto: React.FC<CardProductoProps> = (props: CardProductoProps) => {
+  const { title, price, rating, stock, brand, category } = props
   return (
     <div className='w-full bg-white p-4 '>
       <h5 className=' text-gray-900 Pro-Light text-sm'>{title}</h5>
