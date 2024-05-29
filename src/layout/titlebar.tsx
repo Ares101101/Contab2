@@ -113,9 +113,9 @@ const TitleBar: React.FC<TitleBarProps> = (props) => {
           <div className=''>
             <Logo className=' size-4' />
           </div>
-          <div className=' text-xs text-[#cccccc]'>
+          <h1 className=' text-xs text-[#cccccc]'>
             Contab 2
-          </div>
+          </h1>
         </div>
       </nav>
 

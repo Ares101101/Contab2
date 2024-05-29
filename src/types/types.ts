@@ -20,6 +20,10 @@ export interface CardProductoProps {
 
 }
 
+export interface MyFormInputs {
+  date: object
+}
+
 export interface NavActiveProps {
   accountOn: (i: number, e: number) => void
   mainWindows: MainWindows[]
@@ -87,11 +91,30 @@ export interface NavAyudaProps {
   onSect: () => void
   layoutOn: (i: number, e: number) => void
 }
+
+export interface AppLogicProps {
+  Accounts: Account[]
+  mainWindows: MainWindows[]
+  setAccount: React.Dispatch<React.SetStateAction<Account[]>>
+  setMainWindows: React.Dispatch<React.SetStateAction<MainWindows[]>>
+  accountOn: (i: number, e: number) => void
+  crearWindow: (i: number, e: number) => MainWindows
+  isOpenWindow: (id: string) => void
+  closewindow: (id: string) => void
+}
+
 export interface FechaGenerada {
   minDate: string
   maxDate: string
   ultimeDate: string
 }
+
+interface Account {
+  on: boolean
+  index: number
+  account: boolean[]
+}
+
 interface Producto {
   id: number
   title: string

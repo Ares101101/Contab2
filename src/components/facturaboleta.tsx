@@ -1,78 +1,82 @@
 // #region imports and props
-import '../styles/stylesf.css'
-import { useEffect, useRef, useState } from 'react'
+import styles from '../styles/stylesf.module.css'
+import MenorIcon from '../icons/menor'
+import { useEffect, useState } from 'react'
 import { generarFecha } from '../lib/functions'
 import { FacturaBoletaProps } from '../types/types'
-import MenorIcon from '../icons/menor'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
 const FacturaBoleta: React.FC<FacturaBoletaProps> = (props) => {
   const { state } = props
   // #region states
-  const [comprobante, setComprobante] = useState('FACTURA DE VENTA')
+  const { register, handleSubmit, setValue } = useForm()
+  const [comprobante, setComprobante] = useState('BOLETA DE VENTA')
   const [on, setOn] = useState(false)
   const [date, setDate] = useState({ minDate: '', maxDate: '', ultimateDate: '' })
   // const [fecha, setFecha] = useState('')
-  const [alturas, setAlturas] = useState({ ref: 0, cont: 0 })
-  const divRef = useRef<HTMLDivElement>(null)
-  const divCont = useRef<HTMLDivElement>(null)
-
   useEffect(() => {
-    if ((divCont.current != null) && (divRef.current != null)) {
-      const alturaCont = divCont.current.clientHeight
-      const alturaRef = divRef.current.clientHeight
-
-      if (alturaCont !== alturas.cont || alturaRef !== alturas.ref) {
-        setAlturas({
-          ref: alturaRef,
-          cont: alturaCont
-        })
-      }
-    }
-  }, [state.length])
-
-  useEffect(() => {
+    setValue('comprobante', 'boleta')
     const { minDate, maxDate, ultimeDate } = generarFecha()
     setDate({ minDate, maxDate, ultimateDate: ultimeDate })
   }, [])
 
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    console.log(data)
+  }
+
   return (
     <form
-      className=' text-xs pl-4 comprobante overflow-y-auto  bg-[#1e1e1e] Pro-Light text-[#848484] flex flex-col Factura pb-4 arti '
+      className={styles.form}
+      onSubmit={handleSubmit(onSubmit) /* eslint-disable-line @typescript-eslint/no-misused-promises */}
     >
-      <fieldset className='w-full h-8  flex justify-between relative '>
-        <label className='min-w-36 w-full flex flex-col rounded-md'>
-          <div className='  justify-center flex items-center rounded-md h-full '>
-            <h2 className={(comprobante === 'FACTURA DE VENTA') ? ' text-[#007acc] Pro-Bold text-xl w-full h-full flex items-center justify-center rounded-tl-md select-none' : ' text-[#4caf50]  Pro-Bold text-xl w-full h-full flex items-center justify-center rounded-tl-md select-none'}>
-              {comprobante}
-            </h2>
-            <span
-              className={(comprobante === 'FACTURA DE VENTA') ? 'grid items-center justify-center w-4 h-full bg-[#007acc] focus:text-white text-[#D2D2D2] hover:text-white select-none' : 'grid items-center justify-center w-4 h-full bg-[#4caf50] focus:text-white text-[#D2D2D2] hover:text-white select-none'}
-              onClick={() => { setOn(!on) }}
-            >
-              <MenorIcon className='w-4' />
-            </span>
-          </div>
+      <fieldset className={styles.ftitle}>
+        <label className={styles.labelTitle}>
+          <span
+            className={`${styles.spanComprobante} ${(comprobante === 'FACTURA DE VENTA') ? styles.factura : styles.boleta}`}
+            onClick={() => { setOn(!on) }}
+          >
+            <MenorIcon className='w-4' />
+          </span>
+          <h2 className={(comprobante === 'FACTURA DE VENTA') ? ' text-[#007acc] Pro-Bold text-xl w-full h-full flex items-center justify-center rounded-tl-md select-none' : ' text-[#4caf50]  Pro-Bold text-xl w-full h-full flex items-center justify-center rounded-tl-md select-none'}>
+            {comprobante}
+          </h2>
         </label>
-        <ul className={on ? 'absolute w-40 h-20 bg-[#F3F3F3] right-0 top-24 flex flex-col rounded-md border border-[#c0c0c0] select-none' : ' hidden '}>
-          <button
-            className='rounded-md h-full Pro-Light text-sm hover:bg-white select-none'
-            onClick={() => {
-              setComprobante('FACTURA DE VENTA')
-              setOn(!on)
-            }}
+        <fieldset
+          className={on ? 'absolute w-40 p-2 left-0 top-8   flex flex-col  select-none text-[#F6F6F6] border border-[#788284] bg-[#1f1f1f] rounded-md z-10 ' : ' hidden '}
+
+        >
+          <legend className=' text-xs px-2'>comprobante</legend>
+          <label
+            htmlFor='comprobante-factura'
+            className=''
           >
-            FACTURA DE VENTA
-          </button>
-          <button
-            className='rounded-md h-full Pro-Light text-sm hover:bg-white select-none'
-            onClick={() => {
-              setComprobante('BOLETA DE VENTA')
-              setOn(!on)
-            }}
-          >
-            BOLETA DE VENTA
-          </button>
-        </ul>
+            <input
+              id='comprobante-factura'
+              value='factura'
+              type='radio'
+              className='rounded-md  text-xs hover:bg-[#007acc50] hover:text-[#F6F6F6] select-none inline'
+              onClick={() => {
+                setComprobante('FACTURA DE VENTA')
+                setOn(!on)
+              }}
+              {...register('comprobante', { required: true })}
+            />Factura
+          </label>
+          <label htmlFor='comprobante-boleta'>
+            <input
+              id='comprobante-boleta'
+              value='boleta'
+              type='radio'
+              className='rounded-md  text-xs hover:bg-[#007acc50] hover:text-[#F6F6F6] select-none inline'
+              onClick={() => {
+                setComprobante('BOLETA DE VENTA')
+                setOn(!on)
+              }}
+              {...register('comprobante', { required: true })}
+            />Boleta
+          </label>
+
+        </fieldset>
       </fieldset>
       <article className=' flex w-full justify-between'>
 
@@ -145,11 +149,10 @@ const FacturaBoleta: React.FC<FacturaBoletaProps> = (props) => {
       </article>
       <div
         className=' w-full overflow-y-auto max-h-56 '
-        ref={divCont}
+
       >
         <div
-          className={'w-full gap-1 flex flex-col ' + `${(alturas.cont === alturas.ref) ? ' pr-4' : ' '}`}
-          ref={divRef}
+          className='w-full gap-1 flex flex-col '
         >
           {
             state?.map(state => (
@@ -220,12 +223,9 @@ const FacturaBoleta: React.FC<FacturaBoletaProps> = (props) => {
 
         </div>
       </article>
-      <article className='  Pro-Light h-12  select-none text-sm  flex gap-1  pr-4 w-full'>
-        <div className=' rounded w-full h-full pr-4 bg-[#333333] text-white flex justify-center items-center hover:bg-stone-500 cursor-pointer  '>
-          EMITIR
-        </div>
-      </article>
-
+      <button className=' select-none text-sm rounded w-full h-12 bg-[#333333] text-white flex justify-center items-center hover:bg-stone-500 cursor-pointer  '>
+        EMITIR
+      </button>
     </form>
   )
 }

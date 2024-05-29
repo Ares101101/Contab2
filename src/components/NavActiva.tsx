@@ -1,15 +1,5 @@
+import { componentMap } from '../lib/maps'
 import { NavActiveProps } from '../types/types'
-import NavAlmacen from './navAlmacen'
-import NavFacturacion from './navFacturacion'
-import NavGraficos from './navGraficos'
-import NavRegistros from './navRegistros'
-
-const componentMap = [
-  NavFacturacion,
-  NavAlmacen,
-  NavRegistros,
-  NavGraficos
-]
 
 const NavActive: React.FC<NavActiveProps> = (props) => {
   const {
@@ -20,6 +10,7 @@ const NavActive: React.FC<NavActiveProps> = (props) => {
     setMainWindows,
     crearWindow
   } = props
+
   // Encuentra el índice del primer elemento true en onTitle
   const activeIndex = onTitle.indexOf(true)
 

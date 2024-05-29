@@ -1,0 +1,64 @@
+.form{
+    height: calc(100vh - 72px);
+    font-size: 0.75rem/* 12px */;
+    line-height: 1rem/* 16px */;
+}
+
+.ftitle{
+    width: 100%;
+    height: 32px;  
+    position: relative;
+}
+.labelTitle{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.spanComprobante{
+    border-radius: 0.25rem/* 4px */;
+    cursor: pointer;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem/* 24px */;
+    height: 1.5rem/* 24px */;
+    color: #D2D2D2;
+    user-select: none;
+    transition: color 0.3s, background-color 0.3s;
+}
+.spanComprobante:hover{
+    color: white;
+}
+.spanComprobante:focus{
+    color: white;
+}
+.factura{
+    background-color:#007acc
+}
+.boleta{
+    background-color:#4caf50;  
+}
+
+
+input[type="date"]{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 24px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator{
+    padding: 30%;
+}
+
+input[type="date"]::-webkit-datetime-edit { 
+    padding: 1em;
+    width: 100%;
+}
+
+input[type=date]::-webkit-calendar-picker-indicator:hover {
+    background-color: #959595;
+    color: #e6e6e6;
+    cursor: pointer;  
+}

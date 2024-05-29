@@ -14,6 +14,11 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh'],
   rules: {
-    '@typescript-eslint/restrict-plus-operands': 'error'
+    '@typescript-eslint/restrict-plus-operands': 'error',
+    '@typescript-eslint/no-misused-promises': [2, {
+      checksVoidReturn: {
+        attributes: false
+      }
+    }]
   }
 }
