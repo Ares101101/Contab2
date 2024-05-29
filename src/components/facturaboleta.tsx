@@ -36,22 +36,23 @@ const FacturaBoleta: React.FC<FacturaBoletaProps> = (props) => {
   }, [])
 
   return (
-    <article className=' pl-4 comprobante overflow-y-auto  bg-[#1e1e1e] Pro-Light text-[#848484] flex flex-col Factura pb-4 arti '>
-      <section className='w-full h-8  flex justify-between relative '>
-
-        <section className='min-w-36 w-full flex flex-col rounded-md'>
+    <form
+      className=' text-xs pl-4 comprobante overflow-y-auto  bg-[#1e1e1e] Pro-Light text-[#848484] flex flex-col Factura pb-4 arti '
+    >
+      <fieldset className='w-full h-8  flex justify-between relative '>
+        <label className='min-w-36 w-full flex flex-col rounded-md'>
           <div className='  justify-center flex items-center rounded-md h-full '>
-            <span className={(comprobante === 'FACTURA DE VENTA') ? ' text-[#007acc] Pro-Bold text-xl w-full h-full flex items-center justify-center rounded-tl-md select-none' : ' text-[#4caf50]  Pro-Bold text-xl w-full h-full flex items-center justify-center rounded-tl-md select-none'}>
+            <h2 className={(comprobante === 'FACTURA DE VENTA') ? ' text-[#007acc] Pro-Bold text-xl w-full h-full flex items-center justify-center rounded-tl-md select-none' : ' text-[#4caf50]  Pro-Bold text-xl w-full h-full flex items-center justify-center rounded-tl-md select-none'}>
               {comprobante}
-            </span>
-            <button
+            </h2>
+            <span
               className={(comprobante === 'FACTURA DE VENTA') ? 'grid items-center justify-center w-4 h-full bg-[#007acc] focus:text-white text-[#D2D2D2] hover:text-white select-none' : 'grid items-center justify-center w-4 h-full bg-[#4caf50] focus:text-white text-[#D2D2D2] hover:text-white select-none'}
               onClick={() => { setOn(!on) }}
             >
               <MenorIcon className='w-4' />
-            </button>
+            </span>
           </div>
-        </section>
+        </label>
         <ul className={on ? 'absolute w-40 h-20 bg-[#F3F3F3] right-0 top-24 flex flex-col rounded-md border border-[#c0c0c0] select-none' : ' hidden '}>
           <button
             className='rounded-md h-full Pro-Light text-sm hover:bg-white select-none'
@@ -72,7 +73,7 @@ const FacturaBoleta: React.FC<FacturaBoletaProps> = (props) => {
             BOLETA DE VENTA
           </button>
         </ul>
-      </section>
+      </fieldset>
       <article className=' flex w-full justify-between'>
 
         <picture className=' w-auto h-24 flex select-none p-4'>
@@ -85,46 +86,40 @@ const FacturaBoleta: React.FC<FacturaBoletaProps> = (props) => {
         </article>
       </article>
       <article className='w-full h-auto flex flex-col pr-4 gap-1'>
-        <div className=' flex w-full h-6 gap-1'>
-          <div className='w-full  flex justify-between bg-[#333333] rounded px-4 text-xs text-[#777777]'>
-            <div className='h-full flex  overflow-hidden text-ellipsis items-center truncate'>
-              Fecha de emision :
-            </div>
-            <label
-              htmlFor='fecha'
-              className=' select-none h-full'
-            >
-              <input
-                type='date'
-                min={date.minDate}
-                max={date.maxDate}
-                required
-                className='select-none h-full'
-                defaultValue={date.maxDate}
-                onChange={() => { /* setFecha(event.target.value) */ }}
-              />
-            </label>
+        <label
+          htmlFor='fecha'
+          className=' select-none h-6 w-full justify-end flex gap-2 bg-[#333333] rounded '
+        >
+          <div className=' pl-4 h-full w-44 flex text-ellipsis items-center truncate'>
+            Fecha de emision :
           </div>
-        </div>
-        <div className='h-6 flex justify-between bg-[#333333] rounded px-4 text-xs text-[#777777] overflow-hidden'>
-          <div className='h-full flex  overflow-hidden text-ellipsis items-center truncate'>
+          <input
+            type='date'
+            min={date.minDate}
+            max={date.maxDate}
+            required
+            className='select-none h-full sm:w-full w-1/2 rounded'
+            defaultValue={date.maxDate}
+            onChange={() => { /* setFecha(event.target.value) */ }}
+          />
+        </label>
+        <label
+          htmlFor='fecha'
+          className=' select-none h-6 w-full justify-end flex gap-2 bg-[#333333] rounded '
+        >
+          <div className=' pl-4 h-full w-44 flex text-ellipsis items-center truncate'>
             Fecha de vencimiento :
           </div>
-          <label
-            htmlFor='fecha'
-            className=' select-none h-full'
-          >
-            <input
-              type='date'
-              min={date.maxDate}
-              max={date.ultimateDate}
-              required
-              className='select-none h-full'
-              defaultValue={date.maxDate}
-              onChange={() => { /* setFecha(event.target.value) */ }}
-            />
-          </label>
-        </div>
+          <input
+            type='date'
+            min={date.maxDate}
+            max={date.ultimateDate}
+            required
+            className='select-none h-full sm:w-full w-1/2 rounded'
+            defaultValue={date.maxDate}
+            onChange={() => { /* setFecha(event.target.value) */ }}
+          />
+        </label>
         <div className=' flex w-full px-4 text-xs h-6 bg-[#333333] text-[#777777] rounded items-center'>
           RUC:  AAAAAAAAAAAAAAAAAAAAAAAAA
         </div>
@@ -231,7 +226,7 @@ const FacturaBoleta: React.FC<FacturaBoletaProps> = (props) => {
         </div>
       </article>
 
-    </article>
+    </form>
   )
 }
 export default FacturaBoleta

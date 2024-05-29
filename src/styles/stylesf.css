@@ -12,3 +12,22 @@
 .arti{
     scrollbar-width: none;
 }
+input[type="date"]{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 24px;
+}
+input[type="date"]::-webkit-calendar-picker-indicator{
+    padding: 30%;
+}
+input[type="date"]::-webkit-datetime-edit { 
+    padding: 1em;
+    width: 100%;
+ }
+
+input[type=date]::-webkit-calendar-picker-indicator:hover {
+    background-color: #959595;
+    color: #e6e6e6;
+    cursor: pointer;
+    
+}

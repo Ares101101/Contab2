@@ -1,4 +1,6 @@
-export const generarFecha = (): object => {
+import { FechaGenerada } from '../types/types'
+
+export const generarFecha = (): FechaGenerada => {
   const fechaActual = new Date()
   const fecha = new Date()
   const anio = fecha.getFullYear()
