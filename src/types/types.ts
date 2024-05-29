@@ -19,6 +19,7 @@ export interface CardProductoProps {
   images: string[]
 
 }
+
 export interface NavActiveProps {
   accountOn: (i: number, e: number) => void
   mainWindows: MainWindows[]
@@ -81,18 +82,22 @@ export interface NavAlmacenProps {
   crearWindow: (i: number, e: number) => MainWindows
 }
 
+export interface NavAyudaProps {
+  funct: () => void
+  onSect: () => void
+  layoutOn: (i: number, e: number) => void
+}
+export interface FechaGenerada {
+  minDate: string
+  maxDate: string
+  ultimeDate: string
+}
 interface Producto {
   id: number
   title: string
   cantidad: number
   price: number
 }
-export interface NavAyudaProps {
-  funct: () => void
-  onSect: () => void
-  layoutOn: (i: number, e: number) => void
-}
-
 export const Settings = {
   layauts: [
     { on: true, index: 0, account: [true, false, false, false, false, false, false] },
