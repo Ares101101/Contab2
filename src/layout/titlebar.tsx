@@ -52,6 +52,13 @@ const TitleBar: React.FC<TitleBarProps> = (props) => {
     setOnTitle(newNav)
   }
 
+  const onNav = (i: number): void => {
+    const newNav = onTitle.map((_, index) => {
+      if (i === index) return true
+      return false
+    })
+    setOnTitle(newNav)
+  }
   const handleClickOutside = (event: any): void => {
     // Verificar si el clic se produjo fuera del componente
     if ((ref.current != null) && !ref.current.contains(event.target)) {
@@ -78,7 +85,7 @@ const TitleBar: React.FC<TitleBarProps> = (props) => {
           <div
             className='h-full flex items-center justify-center cursor-pointer '
             onClick={() => {
-              onTitle[i] && cerrar()
+              onTitle[i] ? cerrar() : onNav(i)
             }}
             key={i}
           >
