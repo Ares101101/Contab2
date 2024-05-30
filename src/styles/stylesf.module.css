@@ -2,6 +2,10 @@
     height: calc(100vh - 72px);
     font-size: 0.75rem/* 12px */;
     line-height: 1rem/* 16px */;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
 }
 
 .ftitle{
@@ -16,17 +20,108 @@
     align-items: center;
 }
 
+.titlecomprobante{
+    font-size: 1.25rem/* 20px */;
+    line-height: 1.75rem/* 28px */;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    transition: color 0.3s, background-color 0.3s;
+}
+.facturat{
+    color:#007acc
+}
+.boletat{
+    color:#4caf50;  
+}
+
+.ventana{
+    position: absolute;
+    width: 7rem;
+    padding: 0.5rem;
+    left: 0;
+    top: 32px;
+    user-select: none;
+    border-width: 1px;
+    border-color: #788284;
+    background: #1f1f1f;
+    border-radius: 0.375rem/* 6px */;
+    z-index: 10;
+    color: #F6F6F6;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.inputradio{
+    appearance: none;
+    position: relative;
+    display: inline-block;
+    background: lightgrey;
+    height: 1.40rem;
+    width: 2.40rem;
+    vertical-align: middle;
+    border-radius: 2rem;
+    box-shadow: 0px 1px 3px #0003 inset;
+    transition: 0.25s linear background;
+    margin-right: 4px;
+}
+.inputradio::before {
+    content: "";
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    background: #fff;
+    border-radius: 1rem;
+    position: absolute;
+    top: 0.2rem;
+    left: 0.2rem;
+    box-shadow: 0px 1px 3px #0003;
+    transition: 0.25s linear transform;
+    transform: translateX(0rem);
+}
+.inputradio:checked {
+    background: green;
+}
+.inputradio:checked::before {
+    transform: translateX(1rem);
+}
+
+
+.ocultar{
+    display: none;
+}
+.legendtext{
+    font-size: 0.75rem/* 12px */;
+    line-height: 1rem/* 16px */;
+    font-weight: 700;
+    padding-left: 4px;
+    padding-right: 4px;
+    
+}
+.labelradio{
+    padding-left: 4px;   
+}
+.labelradio input[type="radio"]{
+    margin-right: 4px;
+}
+
 .spanComprobante{
     border-radius: 0.25rem/* 4px */;
     cursor: pointer;
     display: grid;
     align-items: center;
     justify-content: center;
-    width: 1.5rem/* 24px */;
-    height: 1.5rem/* 24px */;
+    min-width:  1.5rem/* 24px */;
+    min-height: 1.5rem/* 24px */;
     color: #D2D2D2;
     user-select: none;
     transition: color 0.3s, background-color 0.3s;
+    position: absolute;
+    left: 4px;
 }
 .spanComprobante:hover{
     color: white;
@@ -61,4 +156,31 @@ input[type=date]::-webkit-calendar-picker-indicator:hover {
     background-color: #959595;
     color: #e6e6e6;
     cursor: pointer;  
+}
+.article{
+    display: flex;
+    width: 100%;
+    justify-content: space-between; 
+}
+.picture{
+    width: auto;
+    height: 6rem;
+    display: flex;
+    user-select: none;
+    padding: 16px;
+}
+.dataEmpresa{
+    user-select: none;
+    font-size: 0.75rem/* 12px */;
+    line-height: 1rem/* 16px */;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px;
+    max-width: 50%;
+    min-width: 240px;
+    justify-content: space-between;
+}
+.label{
+    font-weight: 600;
 }

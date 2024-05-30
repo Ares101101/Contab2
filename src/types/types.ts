@@ -65,6 +65,12 @@ export interface MainProps {
   isOpenWindow: (id: string) => void
 }
 
+export interface MainBarProps {
+  mainWindows: MainWindows[]
+  closewindow: (id: string) => void
+  isOpenWindow: (id: string) => void
+}
+
 export interface ProductosProps {
   sumarItems: (item: { id: number, title: string, price: number }) => void
 }
