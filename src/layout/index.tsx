@@ -12,7 +12,9 @@ const IndexMain: React.FC<MainBarProps> = (props) => {
 
   return (
     <div className='overflow-hidden section w-full '>
-      <SettingsMain />
+      <SettingsMain 
+        
+      />
       <div className=' overflow-hidden w-full h-full'>
         <MainBar
           mainWindows={mainWindows}

@@ -77,3 +77,47 @@ export const useAppLogic = (): AppLogicProps => {
     closewindow
   }
 }
+
+export const effectLayout = (
+  ref: React.RefObject<HTMLDivElement>,
+  refRight: React.RefObject<HTMLDivElement>): void => {
+  useEffect(() => {
+    const resizeableEle = ref.current
+    const resizerRight = refRight.current
+
+    if (resizeableEle == null || resizerRight == null) return
+
+    let animationFrameId: number
+
+    const onMouseMoveRight = (event: MouseEvent): void => {
+      const dx = event.clientX - 48
+
+      // No es necesario establecer el estilo dos veces
+      cancelAnimationFrame(animationFrameId)
+      animationFrameId = requestAnimationFrame(() => {
+        resizeableEle.style.width = `${dx}px`
+      })
+    }
+
+    const onMouseUpRight = (): void => {
+      document.removeEventListener('mousemove', onMouseMoveRight)
+      document.removeEventListener('mouseup', onMouseUpRight)
+      document.body.style.cursor = 'default'
+      resizerRight.classList.remove('active')
+    }
+
+    const onMouseDownRight = (): void => {
+      document.addEventListener('mousemove', onMouseMoveRight)
+      document.addEventListener('mouseup', onMouseUpRight)
+      document.body.style.cursor = 'ew-resize'
+      resizerRight.classList.add('active')
+    }
+
+    resizerRight.addEventListener('mousedown', onMouseDownRight)
+
+    // Cleanup function
+    return () => {
+      resizerRight.removeEventListener('mousedown', onMouseDownRight)
+    }
+  }, [])
+}

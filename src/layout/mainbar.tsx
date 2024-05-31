@@ -37,8 +37,8 @@ const MainBar: React.FC<MainBarProps> = (props) => {
               }}
             >
               {
-                                main.icon
-                            }
+                main.icon
+              }
             </div>
             <button
               className='truncate h-full pr-5 w-full overflow-hidden '

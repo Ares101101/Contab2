@@ -185,7 +185,7 @@ const FacturaBoleta: React.FC<FacturaBoletaProps> = (props) => {
           <div className='absolute left-4'>
             Señor(es):
           </div>
-        </label>
+        </label>  
         <label className=' flex w-full text-xs h-6 bg-[#333333] text-[#777777] rounded items-center relative'>
           <input
             type='text'
